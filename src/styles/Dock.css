@@ -1,0 +1,42 @@
+.dock {
+    background: var(--dock-bg);
+    display: flex;
+    width: fit-content;
+    height: 100%;
+
+    flex-direction: column;
+    justify-content: space-between;
+
+    padding: clamp(10px, 390px, 12px);
+}
+
+.navigation-stack {
+    display: flex;
+    flex-direction: column;
+    width: fit-content;
+    height: fit-content;
+    gap: 16px;
+}
+
+.nav {
+    background: var(--text-bg);
+    display: flex;
+    aspect-ratio: 1 / 1;
+
+    padding: 2px;
+    align-items: center;
+    justify-content: center;
+    border: solid 1.5px var(--border);
+    box-shadow: var(--shadow-btn);
+    margin-right: 2px;
+
+    color: var(--text);
+    cursor: pointer;
+}
+
+.nav:active {
+    transform: 
+        translateX(2px)
+        translateY(2px);
+    box-shadow: none;
+}
