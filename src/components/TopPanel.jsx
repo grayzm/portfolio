@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/TopPanel.css';
-import { useTheme } from './Theme';
+import { useTheme } from './Theme.jsx';
 
 import { MoonIcon as MoonIconOutlined } from '@heroicons/react/24/outline';
 import { SunIcon as SunIconOutlined } from '@heroicons/react/24/outline';
@@ -74,7 +74,10 @@ export default function TopPanel() {
                                             <div 
                                             className={`btn ${activeTheme === btn.id ? 'active' : ''}`} 
                                             id={`${btn.label}-btn`} 
-                                            onClick={() => {setTheme(btn.label), setActiveTheme(btn.id)}}>
+                                            onClick={() => {
+                                                setTheme(btn.label); 
+                                                setActiveTheme(btn.id);
+                                                }}>
                                                 {btn.label === 'dark' ? (
                                                     activeBtn ? <MoonIconFilled width={14} height={14} /> : <MoonIconOutlined width={14} height={14} strokeWidth={2}/>
                                                     ) : (

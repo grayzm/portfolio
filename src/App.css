@@ -79,6 +79,7 @@
   overflow: hidden;
   padding: 20px;
   background: var(--text-bg);
+  pointer-events: auto;
 }
 
 /* .scroll-container {

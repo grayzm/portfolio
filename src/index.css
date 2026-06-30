@@ -14,15 +14,15 @@
   --text-bg: light-dark(#fff, #000);
   --folders: light-dark(#525252, #a3a3a3);
   --folders-hover: light-dark(rgba(0, 0, 0, 0.06), rgb(255, 255, 255, 0.06));
-  --border: light-dark(#0a0a0a, #a3a3a3);
-  --windows-bg: light-dark(#f6f6f6, #171717);
-  --dock-bg: light-dark(#d4d4d4, #262626);
-  --panel-bg: light-dark(#a3a3a3, #000);
+  --border: light-dark(#0a0a0a, #d4d4d4);
+  --windows-bg: light-dark(#f6f6f6, #0a0a0a);
+  --dock-bg: light-dark(#d4d4d4, #373737);
+  --panel-bg: light-dark(#a3a3a3, #171717);
   --accent: light-dark(#aa3bff, #c084fc);
   --accent-bg: light-dark(rgba(170, 59, 255, 0.1), rgba(192, 132, 252, 0.15));
   --accent-border: light-dark(rgba(170, 59, 255, 0.5), rgba(192, 132, 252, 0.5));
   --social-bg: light-dark(rgba(244, 243, 236, 0.5), rgba(47, 48, 58, 0.5));
-  --shadow-btn: 2px 2px 0 light-dark(#000, #a3a3a3);
+  --shadow-btn: 2px 2px 0 light-dark(#000, #d4d4d4);
   --shadow-window: 6px 6px 0 light-dark(rgba(0,0,0, 0.25), rgba(255, 255, 255, 0.25));
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;

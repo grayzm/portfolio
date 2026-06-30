@@ -1,13 +1,20 @@
 import React from 'react';
 import '../styles/ProfileDesktop.css';
+import { useTheme } from './Theme.jsx';
 
 import { FolderIcon } from '@heroicons/react/24/outline';
+import { FolderClosed } from 'lucide-react';
+import { FileText } from 'lucide-react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import emailIcon from '../assets/icons/email.png';
 import linkedInIcon from '../assets/icons/linkedin.png';
 import instagramIcon from '../assets/icons/instagram.png';
 import soundCloudIcon from '../assets/icons/soundcloud.png';
+import emailIconDark from '../assets/icons/email-dark.png';
+import linkedInIconDark from '../assets/icons/linkedin-dark.png';
+import instagramIconDark from '../assets/icons/instagram-dark.png';
+import soundCloudIconDark from '../assets/icons/soundcloud-dark.png';
 
 export default function ProfileDesktop() {
 
@@ -20,11 +27,11 @@ export default function ProfileDesktop() {
     };
 
     const folders = [
-        { id: 1, name: 'about'},
-        { id: 2, name: 'education-awards-honors'},
-        { id: 3, name: 'tools'},
-        { id: 4, name: 'interests'},
-        { id: 5, name: 'contact-socials'},
+        { id: 1, name: 'about', type: 'file'},
+        { id: 2, name: 'education-awards-honors', type: 'file'},
+        { id: 3, name: 'tools', type: 'file'},
+        { id: 4, name: 'interests', type: 'file'},
+        { id: 5, name: 'contact-socials', type: 'folder'},
     ];
 
     const [openFolders, setOpenFolders] = React.useState([]);
@@ -52,7 +59,10 @@ export default function ProfileDesktop() {
                         key={folder.id}
                         onClick={() => openFolder(folder.name)}
                     >
-                        <FolderIcon className='folder-icon' strokeWidth={0.8} />
+                        {folder.type === 'file' 
+                            ? <FileText className='folder-icon' size={56} strokeWidth={0.6} />
+                            : <FolderClosed className='folder-icon' size={56} strokeWidth={0.6} />
+                        }
                         <p>{folder.name}</p>
                     </div>
                 ))}
@@ -170,17 +180,19 @@ function InterestsContents() {
 }
 
 function ContactContents() {
+    const { theme } = useTheme();
     const socialsList = [
-        { name: 'email', img: emailIcon },
-        { name: 'linkedIn', img: linkedInIcon },
-        { name: 'instagram', img: instagramIcon },
-        { name: 'soundCloud', img: soundCloudIcon },
+        { name: 'email', imgLight: emailIcon, imgDark: emailIconDark },
+        { name: 'linkedIn', imgLight: linkedInIcon, imgDark: linkedInIconDark },
+        { name: 'instagram', imgLight: instagramIcon, imgDark: instagramIconDark },
+        { name: 'soundCloud', imgLight: soundCloudIcon, imgDark: soundCloudIconDark },
     ]
+
     return (
         <>
             {socialsList.map((item, index) => (
                 <div className='socials-list' key={index}>
-                    <img src={item.img} alt={item.img}></img>
+                    <img src={theme === 'dark' ? item.imgDark : item.imgLight} alt={item.imgLight}></img>
                     <p>{item.name}</p>
                 </div>
             ))}
