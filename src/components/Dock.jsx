@@ -1,40 +1,48 @@
+import { act } from "react";
 import "../styles/Dock.css";
 import { useSoundFX } from "./useSoundFX";
 
-import { IdCard } from "lucide-react";
-import { FolderOpen } from "lucide-react";
-import { Gamepad2 } from "lucide-react";
-import { LibraryBig } from "lucide-react";
-import { Lock } from "lucide-react";
-
-export default function Dock() {
+export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
   const sounds = useSoundFX();
 
-  const desktops = [
-    { name: "about", icon: IdCard },
-    { name: "projects", icon: FolderOpen },
-    { name: "playground", icon: Gamepad2 },
-    { name: "documentations", icon: LibraryBig },
-  ];
+  const desktops = desktopList.filter(desktop => !desktop.isLocked);
+  const lockedDesktop = desktopList.find(desktop => desktop.isLocked)
+  const LockedIcon = lockedDesktop?.icon;
+
+//   console.log(`${lockedDesktop?.name}`)
 
   return (
     <div className="dock">
       <div className="navigation-stack">
-        {desktops.map((desktop, index) => (
-          <div
-            className="nav"
-            key={index}
+        {desktops.map((desktop, index) => {
+            const isActive = activeDesktop === desktop.name;
+            return (
+                <div
+                    className="nav"
+                    key={index}
+                    onClick={() => {
+                        sounds.playClick();
+                        setActiveDesktop(desktop.name);
+                        console.log(`active desktop: ${activeDesktop}`);
+                    }}
+                >
+                    <desktop.icon size={24} strokeWidth={1.3} />
+                </div>
+            )
+        })}
+      </div>
+      {LockedIcon && (
+        <div 
+            className="nav" 
             onClick={() => {
-              sounds.playClick();
+                sounds.playClick();
+                setActiveDesktop(lockedDesktop.name);
+                console.log(`active desktop: ${activeDesktop}`);
             }}
-          >
-            <desktop.icon size={24} strokeWidth={1.3} />
-          </div>
-        ))}
-      </div>
-      <div className="nav" onClick={sounds.playClick}>
-        <Lock size={24} strokeWidth={1.3} />
-      </div>
+        >
+          <LockedIcon size={24} strokeWidth={1.3} />
+        </div>
+      )}
     </div>
   );
 }
