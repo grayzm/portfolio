@@ -72,7 +72,7 @@
     padding-right: 2px;
 }
 
-.btn {
+.theme-btn {
     display: flex;
     width: 20px;
     height: 20px;
@@ -81,11 +81,11 @@
     align-items: center;
 
     border: solid 1.5px var(--border);
-    box-shadow: var(--shadow-btn);
+    box-shadow: 2px 2px 0 var(--border);
     cursor: pointer;
 }
 
-.btn.active {
+.theme-btn.active {
     transform: 
         translateX(2px)
         translateY(2px);

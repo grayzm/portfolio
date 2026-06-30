@@ -27,8 +27,8 @@
     align-items: center;
     justify-content: center;
     border: solid 1.5px var(--border);
-    box-shadow: var(--shadow-btn);
-    margin-right: 2px;
+    box-shadow:  var(--shadow-nav);
+    margin-right: 2.5px;
 
     color: var(--text);
     cursor: pointer;
@@ -36,7 +36,7 @@
 
 .nav:active {
     transform: 
-        translateX(2px)
-        translateY(2px);
+        translateX(2.5px)
+        translateY(2.5px);
     box-shadow: none;
 }

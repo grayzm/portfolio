@@ -59,7 +59,9 @@
 
   margin-bottom: 2px;
   border: solid 1.5px var(--border);
-  box-shadow: var(--shadow-btn);
+  box-shadow: 2px 2px 0 var(--border);
+  background: var(--text-bg);
+  
   cursor: pointer;
   pointer-events: auto;
 }
@@ -80,6 +82,26 @@
   padding: 20px;
   background: var(--text-bg);
   pointer-events: auto;
+}
+
+.btn {
+  display: flex;
+  width: fit-content;
+  height: fit-content;
+
+  justify-content: center;
+  align-items: center;
+  padding: 10px 20px;
+
+  border: solid 1.5px var(--border);
+  box-shadow:var(--shadow-btn);
+
+  cursor: pointer;
+}
+
+.btn:active {
+  transform: translateX(4px) translateY(4px);
+  box-shadow: none;
 }
 
 /* .scroll-container {
