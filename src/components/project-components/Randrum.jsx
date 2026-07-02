@@ -1,9 +1,30 @@
+import React from 'react';
+import '../../styles/project-styles/Randrum.css';
+import { useSoundFX } from '../useSoundFX';
+
 import landingView from '../../assets/visuals/randrum/landing-dark.webp';
 import practiceView from '../../assets/visuals/randrum/practice-sample-dark.webp';
 import createView from '../../assets/visuals/randrum/create-sample-dark.webp';
+import practiceBts from '../../assets/visuals/randrum/practice-bts.webp';
+import createBts from '../../assets/visuals/randrum/create-bts.webp';
+import demoVid from '../../assets/visuals/randrum/demo.mp4';
 
 export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
+    const sounds = useSoundFX();
     const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro']
+
+    const [productIsActive, setProductIsActive] = React.useState(true);
+    const [processIsActive, setProcessIsActive] = React.useState(false);
+
+    const switchActive = () => {
+        if (productIsActive === true) {
+            setProcessIsActive(true)
+            setProductIsActive(false)
+        } else {
+            setProcessIsActive(false)
+            setProductIsActive(true)
+        }
+    };
 
     return (
         <>
@@ -49,21 +70,48 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                 )}
 
                 <div className={`visuals-and-log-container ${logPanelIsActive ? 'log-panel-active' : ''}`}>
-                    <div className='visuals-container'>
-                        <div className='scroll-container' style={{ gap: '24px', overflowX: 'auto'}}>
-                            <div className='img-desc'>
-                                <img className='randrum-img' src={landingView} alt='Randrum landing view'></img>
-                                <p style={{ fontSize: '12px' }}>Landing view</p>
-                            </div>
-                            <div className='img-desc'>
-                                <img className='randrum-img' src={practiceView} alt='Randrum landing view'></img>
-                                <p style={{ fontSize: '12px' }}>Practice view</p>
-                            </div>
-                            <div className='img-desc'>
-                                <img className='randrum-img' src={createView} alt='Randrum landing view'></img>
-                                <p style={{ fontSize: '12px' }}>Create view</p>
+                    <div className='product-container'>
+                        <div className='window-title'>
+                            <p>documentations</p>
+                            <div className='flex g-10' style={{ marginBottom: '2px'}}>
+                                <div 
+                                    className={`product-btn ${productIsActive ? 'active' : ''}`}
+                                    onClick={() => {
+                                        switchActive();
+                                        sounds.playSwitch();
+                                    }}
+                                ><p style={{ fontSize: '10px'}}>product</p></div>
+                                <div 
+                                    className={`process-btn ${processIsActive ? 'active' : ''}`}
+                                    onClick={() => {
+                                        switchActive();
+                                        sounds.playSwitch();
+                                    }}
+                                ><p style={{ fontSize: '10px'}}>process</p></div>
                             </div>
                         </div>
+                        {productIsActive && (
+                            <div className='product-contents'>
+                                <div className='scroll-container-x g-16'>
+                                    <div className='product-img' style={{ backgroundImage: `url(${landingView})`, aspectRatio: '1100/844' }}></div>
+                                    <div className='product-img' style={{ backgroundImage: `url(${practiceView})`, aspectRatio: '1100/844' }}></div>
+                                    <div className='product-img' style={{ backgroundImage: `url(${createView})`, aspectRatio: '1100/844' }}></div>
+                                </div>
+                            </div>
+                        )}
+                        {processIsActive && (
+                            <div className='process-contents'>
+                                <div className='scroll-container-x g-16'>
+                                    <div className='video-container'>
+                                        <video autoPlay loop muted playsInline className='video-demo'>
+                                            <source src={demoVid} type='video/mp4'></source>
+                                        </video>
+                                    </div>
+                                    <div className='product-img' style={{ backgroundImage: `url(${practiceBts})`, aspectRatio: '1060/780' }}></div>
+                                    <div className='product-img' style={{ backgroundImage: `url(${createBts})`, aspectRatio: '3024/1964' }}></div>
+                                </div>
+                            </div>
+                        )}
                     </div>
 
                     {logPanelIsActive && (
@@ -72,7 +120,7 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                             <div className='log-contents'>
                                 <div className='scroll-container'>
                                     <p style={{ fontSize: '12px' }}>
-                                        Randrum was my first solo project after graduating from the Apple Developer Academy. I was still just a designer then, so building it was a huge challenge. I had to have a good grasp and understanding of the language before starting, so I speedran Paul Hudson's Hacking With Swift, and built a couple mini game apps.
+                                        My first solo project after graduating from the Apple Developer Academy. I was still just a designer then, so building it was a huge challenge.
                                         <br></br><br></br>The project ended up taking around 3 weeks to complete with 8+ hours of work a day, and a few all-nighters here and there.
                                         <br></br><br></br>I thoroughly enjoyed the whole process of building this app. This was what sparked my interest into exploring the world of coding. The joy of building something functional completely from scratch as well as debugging felt triumphant. This was the start of the rest of my personal projects and explorations.
                                     </p>
