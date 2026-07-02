@@ -18,6 +18,7 @@
   --windows-bg: light-dark(#f6f6f6, #0a0a0a);
   --dock-bg: light-dark(#d4d4d4, #373737);
   --panel-bg: light-dark(#a3a3a3, #171717);
+  --log-bg: light-dark(#f5f5f5, #262626);
   --accent: light-dark(#aa3bff, #c084fc);
   --accent-bg: light-dark(rgba(170, 59, 255, 0.1), rgba(192, 132, 252, 0.15));
   --accent-border: light-dark(rgba(170, 59, 255, 0.5), rgba(192, 132, 252, 0.5));
@@ -141,7 +142,7 @@ h2 {
     font-size: 13px;
   }
 }
-p {
+p, li {
   font-family: var(--mono);
   font-size: 13px;
   line-height: 1.3em;

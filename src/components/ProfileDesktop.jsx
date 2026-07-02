@@ -1,40 +1,40 @@
-import React from "react";
-import "../styles/ProfileDesktop.css";
-import { useTheme } from "./Theme.jsx";
-import { useSoundFX } from "./useSoundFX.jsx";
-import { motion, AnimatePresence } from "motion/react";
+import React from 'react';
+import '../styles/ProfileDesktop.css';
+import { useTheme } from './Theme.jsx';
+import { useSoundFX } from './useSoundFX.jsx';
+import { motion, AnimatePresence } from 'motion/react';
 
-import { FolderIcon } from "@heroicons/react/24/outline";
-import { FolderClosed } from "lucide-react";
-import { FileText } from "lucide-react";
-import { XMarkIcon } from "@heroicons/react/24/outline";
+import { FolderIcon } from '@heroicons/react/24/outline';
+import { FolderClosed } from 'lucide-react';
+import { FileText } from 'lucide-react';
+import { XMarkIcon } from '@heroicons/react/24/outline';
 
-import emailIcon from "../assets/icons/email.png";
-import linkedInIcon from "../assets/icons/linkedin.png";
-import instagramIcon from "../assets/icons/instagram.png";
-import soundCloudIcon from "../assets/icons/soundcloud.png";
-import emailIconDark from "../assets/icons/email-dark.png";
-import linkedInIconDark from "../assets/icons/linkedin-dark.png";
-import instagramIconDark from "../assets/icons/instagram-dark.png";
-import soundCloudIconDark from "../assets/icons/soundcloud-dark.png";
+import emailIcon from '../assets/icons/email.png';
+import linkedInIcon from '../assets/icons/linkedin.png';
+import instagramIcon from '../assets/icons/instagram.png';
+import soundCloudIcon from '../assets/icons/soundcloud.png';
+import emailIconDark from '../assets/icons/email-dark.png';
+import linkedInIconDark from '../assets/icons/linkedin-dark.png';
+import instagramIconDark from '../assets/icons/instagram-dark.png';
+import soundCloudIconDark from '../assets/icons/soundcloud-dark.png';
 
 export default function ProfileDesktop() {
   const sounds = useSoundFX();
 
   const folderContents = {
     about: AboutContents,
-    "education-awards-honors": EducationContents,
+    'education-awards-honors': EducationContents,
     tools: ToolsContents,
     interests: InterestsContents,
-    "contact-socials": ContactContents,
+    'contact-socials': ContactContents,
   };
 
   const folders = [
-    { id: 1, name: "about", type: "file" },
-    { id: 2, name: "education-awards-honors", type: "file" },
-    { id: 3, name: "tools", type: "file" },
-    { id: 4, name: "interests", type: "file" },
-    { id: 5, name: "contact-socials", type: "folder" },
+    { id: 1, name: 'about', type: 'file' },
+    { id: 2, name: 'education-awards-honors', type: 'file' },
+    { id: 3, name: 'tools', type: 'file' },
+    { id: 4, name: 'interests', type: 'file' },
+    { id: 5, name: 'contact-socials', type: 'folder' },
   ];
 
   const [openFolders, setOpenFolders] = React.useState([]);
@@ -55,38 +55,35 @@ export default function ProfileDesktop() {
   }, [openFolders]);
 
   return (
-    <div className="profile-desktop">
-      <div className="folder-container">
+    <div className='profile-desktop'>
+      <div className='folder-container'>
         {folders.map((folder) => (
           <div
-            className="hover-container"
+            className='hover-container'
             key={folder.id}
             onClick={() => {
               openFolder(folder.name);
             }}
           >
-            {folder.type === "file" ? (
-              <FileText className="folder-icon" size={56} strokeWidth={0.8} />
+            {folder.type === 'file' ? (
+              <FileText className='folder-icon' size={56} strokeWidth={0.8} />
             ) : (
-              <FolderClosed
-                className="folder-icon"
-                size={56}
-                strokeWidth={0.8}
-              />
+              <FolderClosed className='folder-icon' size={56} strokeWidth={0.8} />
             )}
             <p>{folder.name}</p>
           </div>
         ))}
       </div>
 
-      <div className="window-container">
+      <div className='window-container'>
         {openFolders.map((folderName, index) => {
-          const SelectedContent = folderContents[folderName.toLowerCase()];
+          const SelectedContent = folderContents[folderName];
 
           return (
             <AnimatePresence>
               <motion.div
-                className={`${folderName}-window`}
+                className='window'
+                id={`${folderName}-window`}
                 key={index}
                 initial={{ opacity: 0, scale: 0.5 }}
                 animate={{ opacity: 1, scale: 1 }}
@@ -104,8 +101,8 @@ export default function ProfileDesktop() {
                     <XMarkIcon width={14} height={14} strokeWidth={2} />
                   </div>
                 </div>
-                <div className="window-contents">
-                  <div className={`${folderName}-scroll-container`}>
+                <div className='window-contents p-20'>
+                  <div className='scroll-container' id={`${folderName}-container`}>
                     <SelectedContent />
                   </div>
                 </div>
@@ -121,7 +118,7 @@ export default function ProfileDesktop() {
 function AboutContents() {
   return (
     <>
-      <div className="about-name-desc">
+      <div className='about-name-desc'>
         <h1>Graciella Michelle S</h1>
         <p>
           My creative journey began in fashion design before expanding into app
@@ -142,30 +139,30 @@ function AboutContents() {
 function EducationContents() {
   const educationList = [
     {
-      name: "Universitas Ciputra",
-      year: "2020-2024",
-      desc: "Bachelor in Fashion Design & Business",
+      name: 'Universitas Ciputra',
+      year: '2020-2024',
+      desc: 'Bachelor in Fashion Design & Business',
     },
     {
-      name: "Hanyang University",
-      year: "2023",
-      desc: "Digital Marketing Nano-degree",
+      name: 'Hanyang University',
+      year: '2023',
+      desc: 'Digital Marketing Nano-degree',
     },
     {
-      name: "Indonesian International Student Mobility Awards (IISMA)",
-      year: "2023",
-      desc: "Fully funded scholarship program from the government",
+      name: 'Indonesian International Student Mobility Awards (IISMA)',
+      year: '2023',
+      desc: 'Fully funded scholarship program from the government',
     },
     {
-      name: "Apple Developer Academy",
-      year: "2025",
-      desc: "9-month app development journey",
+      name: 'Apple Developer Academy',
+      year: '2025',
+      desc: '9-month app development journey',
     },
   ];
   return (
     <>
       {educationList.map((list, index) => (
-        <div className="education-list" key={index}>
+        <div className='education-list' key={index}>
           <h2>{list.name}</h2>
           <p>
             {list.year}
@@ -180,20 +177,20 @@ function EducationContents() {
 
 function ToolsContents() {
   const toolList = [
-    { category: "Design", tools: ["Figma", "Framer", "AI", "PS", "Fresco"] },
-    { category: "Front-end", tools: ["SwiftUI", "HTML", "CSS", "JS", "React"] },
-    { category: "Game", tools: ["Blender", "Aseprite", "Unity", "Logic Pro"] },
-    { category: "Development", tools: ["Git", "GitHub", "VS Code", "Xcode"] },
+    { category: 'Design', tools: ['Figma', 'Framer', 'AI', 'PS', 'Fresco'] },
+    { category: 'Front-end', tools: ['SwiftUI', 'HTML', 'CSS', 'JS', 'React'] },
+    { category: 'Game', tools: ['Blender', 'Aseprite', 'Unity', 'Logic Pro'] },
+    { category: 'Development', tools: ['Git', 'GitHub', 'VS Code', 'Xcode'] },
   ];
 
   return (
     <>
       {toolList.map((category, index) => (
-        <div className="toolList-category" key={index}>
+        <div className='toolList-category' key={index}>
           <h2>{category.category}</h2>
-          <div className="toolList-tools-container" key={index}>
+          <div className='toolList-tools-container' key={index}>
             {category.tools.map((tool, index) => (
-              <div className="toolList-tools">
+              <div className='toolList-tools'>
                 <p>{tool}</p>
               </div>
             ))}
@@ -226,22 +223,18 @@ function InterestsContents() {
 function ContactContents() {
   const { theme } = useTheme();
   const socialsList = [
-    { name: "email", imgLight: emailIcon, imgDark: emailIconDark },
-    { name: "linkedIn", imgLight: linkedInIcon, imgDark: linkedInIconDark },
-    { name: "instagram", imgLight: instagramIcon, imgDark: instagramIconDark },
-    {
-      name: "soundCloud",
-      imgLight: soundCloudIcon,
-      imgDark: soundCloudIconDark,
-    },
+    { name: 'email', imgLight: emailIcon, imgDark: emailIconDark },
+    { name: 'linkedIn', imgLight: linkedInIcon, imgDark: linkedInIconDark },
+    { name: 'instagram', imgLight: instagramIcon, imgDark: instagramIconDark },
+    { name: 'soundCloud', imgLight: soundCloudIcon, imgDark: soundCloudIconDark },
   ];
 
   return (
     <>
       {socialsList.map((item, index) => (
-        <div className="socials-list" key={index}>
+        <div className='socials-list' key={index}>
           <img
-            src={theme === "dark" ? item.imgDark : item.imgLight}
+            src={theme === 'dark' ? item.imgDark : item.imgLight}
             alt={item.imgLight}
           ></img>
           <p>{item.name}</p>

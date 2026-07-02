@@ -10,6 +10,7 @@ import { FolderOpen } from "lucide-react";
 import { Gamepad2 } from "lucide-react";
 import { LibraryBig } from "lucide-react";
 import { Lock } from "lucide-react";
+import ProjectsDesktop from './components/ProjectsDesktop'
 
 function App() {
 
@@ -23,6 +24,7 @@ function App() {
 
   const desktopComponents = {
     about: <ProfileDesktop />,
+    projects: <ProjectsDesktop />,
   }
   const [activeDesktop, setActiveDesktop] = React.useState('ProfileDesktop');
 

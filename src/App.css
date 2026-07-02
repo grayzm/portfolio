@@ -1,3 +1,34 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.flex {
+  display: flex;
+}
+
+.flex-column {
+  flex-direction: column;
+}
+#flex-column {
+  flex-direction: column;
+}
+
+.p-10 {
+  padding: 10px;
+}
+.p-20 {
+  padding: 20px;
+}
+
+.g-4 {
+  gap: 4px;
+}
+.g-16 {
+  gap: 16px;
+}
+
 .app-container {
   background: var(--border);
   display: flex;
@@ -35,6 +66,19 @@
     pointer-events: none;
 }
 
+.window {
+    position: absolute;
+    z-index: 5;
+
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+
+    border: solid 1px var(--border);
+    box-shadow: var(--shadow-window);
+    pointer-events: auto;
+}
+
 .window-title {
   display: flex;
   width: 100%;
@@ -49,6 +93,11 @@
   border-bottom: solid 1px var(--border);
 }
 
+.window-btn-container {
+  display: flex;
+  gap: 8px;
+}
+
 .window-btn {
   display: flex;
   width: 20px;
@@ -60,8 +109,8 @@
   margin-bottom: 2px;
   border: solid 1.5px var(--border);
   box-shadow: 2px 2px 0 var(--border);
-  background: var(--text-bg);
-  
+  /* background: var(--text-bg); */
+
   cursor: pointer;
   pointer-events: auto;
 }
@@ -74,14 +123,21 @@
 }
 
 .window-contents {
+  position: relative;
   display: flex;
   flex-direction: column;
   width: 100%;
   flex-grow: 1;
   overflow: hidden;
-  padding: 20px;
   background: var(--text-bg);
   pointer-events: auto;
+}
+
+.scroll-container{
+    display: flex;
+    width: 100%;
+    height: 100%;
+    overflow-y: auto;
 }
 
 .btn {
@@ -104,13 +160,15 @@
   box-shadow: none;
 }
 
-/* .scroll-container {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  flex-grow: 1;
-  overflow-y: auto;
-} */
+.profile-desktop,
+.projects-desktop {
+    /* background: blue; */
+    position: relative;
+    display: flex;
+    width: 100%;
+    height: 100%;
+}
+
 
 
 /* 
