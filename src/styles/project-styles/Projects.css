@@ -1,11 +1,18 @@
+/* inside ProjectDesktop.jsx */
 #randrum-window {
     top: 5%;
     left: 5%;
     width: 80%;
     height: 80%;
 }
+#soon-window {
+    top: 10%;
+    left: 10%;
+    width: 80%;
+    height: 80%;
+}
 
-.randrum-container {
+.project-container {
     position: relative;
     display: grid;
     grid-template-columns: 1fr;
@@ -14,7 +21,7 @@
     height: 100%;
     gap: 10px;
 }
-.randrum-container.info-panel-active {
+.project-container.info-panel-active {
     grid-template-columns: 30% 1fr;
 }
 
@@ -81,7 +88,7 @@ ul li::before {
     height: 100%;
     padding: 8px;
     overflow: hidden;
-    background: var(--log-bg);
+    /* background: var(--log-bg); */
 }
 
 .product-container {
@@ -94,7 +101,8 @@ ul li::before {
 }
 
 .product-btn,
-.process-btn {
+.process-btn,
+.tileset-btn {
     display: flex;
     width: 64px;
     height: 20px;
@@ -104,6 +112,7 @@ ul li::before {
 
     margin-bottom: 2px;
     border: solid 1px var(--border);
+    background: var(--text-bg);
     box-shadow: 2px 2px 0 var(--border);
 
     cursor: pointer;
@@ -111,10 +120,12 @@ ul li::before {
 }
 
 .product-btn.active,
-.process-btn.active {
+.process-btn.active,
+.tileset-btn.active {
     transform: translateX(2px) translateY(2px);
-    background: var(--text-bg);
+    background: none;
     box-shadow: none;
+    cursor: default;
 }
 
 .product-process-container p {
@@ -122,7 +133,8 @@ ul li::before {
 }
 
 .product-contents,
-.process-contents {
+.process-contents,
+.tileset-contents {
     /* background: blue; */
     width: 100%;
     height: 100%;
@@ -153,11 +165,50 @@ ul li::before {
 
 .video-container {
     width: 100%;
-    aspect-ratio: 1078 / 838;
 }
 
 .video-demo {
     object-fit: contain;
     width: 100%;
-    aspect-ratio: 1078 / 838;
 }
+
+.parallax-container {
+    position: relative;
+    background: gray;
+    height: 100%;
+    flex-shrink: 0;
+    overflow: hidden;
+}
+.parallax {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+
+    background-repeat: repeat-x;
+    background-size: auto 100%;
+    background-position: 0px center;
+    image-rendering: pixelated;
+}
+@keyframes loopParallaxLeftRight {
+    from {
+        background-position: 0px center;
+    }
+    to {
+        background-position: 100% center;
+    }
+}
+.background2 {
+    animation: loopParallaxLeftRight 25s linear infinite;
+}
+.background {
+    animation: loopParallaxLeftRight 20s linear infinite;
+}
+.middleground {
+    animation: loopParallaxLeftRight 15s linear infinite;
+}
+.foreground {
+    animation: loopParallaxLeftRight 10s linear infinite;
+}
+

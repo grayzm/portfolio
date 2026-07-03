@@ -15,6 +15,8 @@ import instagramIcon from '../assets/icons/instagram.png';
 import soundCloudIcon from '../assets/icons/soundcloud.png';
 import emailIconDark from '../assets/icons/email-dark.png';
 import linkedInIconDark from '../assets/icons/linkedin-dark.png';
+import githubIcon from '../assets/icons/github.png';
+import githubIconDark from '../assets/icons/github-dark.png';
 import instagramIconDark from '../assets/icons/instagram-dark.png';
 import soundCloudIconDark from '../assets/icons/soundcloud-dark.png';
 
@@ -222,21 +224,25 @@ function InterestsContents() {
 
 function ContactContents() {
   const { theme } = useTheme();
+  const sounds = useSoundFX();
   const socialsList = [
-    { name: 'email', imgLight: emailIcon, imgDark: emailIconDark },
-    { name: 'linkedIn', imgLight: linkedInIcon, imgDark: linkedInIconDark },
-    { name: 'instagram', imgLight: instagramIcon, imgDark: instagramIconDark },
-    { name: 'soundCloud', imgLight: soundCloudIcon, imgDark: soundCloudIconDark },
+    { name: 'email', imgLight: emailIcon, imgDark: emailIconDark, link: 'mailto:graciellams38@gmail.com' },
+    { name: 'linkedIn', imgLight: linkedInIcon, imgDark: linkedInIconDark, link: 'https://www.linkedin.com/in/graciella-michelle/' },
+    { name: 'instagram', imgLight: instagramIcon, imgDark: instagramIconDark, link: 'https://www.instagram.com/graciella.michelle_/' },
+    { name: 'gitHub', imgLight: githubIcon, imgDark: githubIconDark, link: 'https://github.com/grayzm' },
+    { name: 'sound cloud', imgLight: soundCloudIcon, imgDark: soundCloudIconDark, link: 'https://soundcloud.com/graciella-782512333' },
   ];
 
   return (
     <>
       {socialsList.map((item, index) => (
-        <div className='socials-list' key={index}>
-          <img
-            src={theme === 'dark' ? item.imgDark : item.imgLight}
-            alt={item.imgLight}
-          ></img>
+        <div className='socials-list' key={index} onClick={() => sounds.playClick()}>
+          <a href={item.link}>
+            <img
+              src={theme === 'dark' ? item.imgDark : item.imgLight}
+              alt={item.imgLight}
+            ></img>
+          </a>
           <p>{item.name}</p>
         </div>
       ))}

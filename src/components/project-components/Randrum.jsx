@@ -1,5 +1,5 @@
 import React from 'react';
-import '../../styles/project-styles/Randrum.css';
+import '../../styles/project-styles/Projects.css';
 import { useSoundFX } from '../useSoundFX';
 
 import landingView from '../../assets/visuals/randrum/landing-dark.webp';
@@ -11,24 +11,18 @@ import demoVid from '../../assets/visuals/randrum/demo.mp4';
 
 export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
     const sounds = useSoundFX();
-    const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro']
+
+    const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
 
     const [productIsActive, setProductIsActive] = React.useState(true);
     const [processIsActive, setProcessIsActive] = React.useState(false);
+    const [activeDocumentations, setActiveDocumentations] = React.useState('product');
 
-    const switchActive = () => {
-        if (productIsActive === true) {
-            setProcessIsActive(true)
-            setProductIsActive(false)
-        } else {
-            setProcessIsActive(false)
-            setProductIsActive(true)
-        }
-    };
+    const documentations = ['product', 'process'];
 
     return (
         <>
-            <div className={`randrum-container ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
+            <div className={`project-container ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                 {infoPanelIsActive && (
                     <div className='info-panel'>
                         <div className='scroll-container flex-column g-16'>
@@ -48,7 +42,7 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                             </div>
                             <div className='flex flex-column g-4'>
                                 <h2>Overview</h2>
-                                <p>A simple drum practice app developed to help beginner drummers train their ears to deconstruct drum patterns that are randomly generated. Users can recreate the given pattern and check to reveal the correct pattern visually.</p>
+                                <p className='text-s'>A simple drum practice app developed to help beginner drummers train their ears to deconstruct drum patterns that are randomly generated. Users can recreate the given pattern and check to reveal the correct pattern visually.</p>
                             </div>
                             <div className='flex flex-column'>
                                 <h2>Key decisions</h2>
@@ -59,7 +53,7 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                                 </ul>
                             </div>
                             <div className='flex flex-column'>
-                                <h2>Evaluations</h2>
+                                <h2>Postmortem</h2>
                                 <ul style={{ textAlign: 'left' }}>
                                     <li>On-boarding could be improved with guided tutorials, especially for non-musicians.</li>
                                     <li>The 1/1 aspect-ratio for the pads prevents the UI to be fully responsive. Either the layout should be evaluated, or ignore the 1/1 aspect-ratio idealism.</li>
@@ -75,22 +69,26 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                             <p>documentations</p>
                             <div className='flex g-10' style={{ marginBottom: '2px'}}>
                                 <div 
-                                    className={`product-btn ${productIsActive ? 'active' : ''}`}
+                                    className={`product-btn ${activeDocumentations === 'product' ? 'active' : ''}`}
                                     onClick={() => {
-                                        switchActive();
-                                        sounds.playSwitch();
+                                        setActiveDocumentations('product');
+                                        if (activeDocumentations !== 'product') {
+                                            sounds.playSwitch();
+                                        }
                                     }}
                                 ><p style={{ fontSize: '10px'}}>product</p></div>
                                 <div 
-                                    className={`process-btn ${processIsActive ? 'active' : ''}`}
+                                    className={`process-btn ${activeDocumentations === 'process' ? 'active' : ''}`}
                                     onClick={() => {
-                                        switchActive();
-                                        sounds.playSwitch();
+                                        setActiveDocumentations('process');
+                                        if (activeDocumentations !== 'process') {
+                                            sounds.playSwitch();
+                                        }
                                     }}
                                 ><p style={{ fontSize: '10px'}}>process</p></div>
                             </div>
                         </div>
-                        {productIsActive && (
+                        {(activeDocumentations === 'product') && (
                             <div className='product-contents'>
                                 <div className='scroll-container-x g-16'>
                                     <div className='product-img' style={{ backgroundImage: `url(${landingView})`, aspectRatio: '1100/844' }}></div>
@@ -99,11 +97,11 @@ export default function Randrum({ infoPanelIsActive, logPanelIsActive }) {
                                 </div>
                             </div>
                         )}
-                        {processIsActive && (
+                        {(activeDocumentations === 'process') && (
                             <div className='process-contents'>
                                 <div className='scroll-container-x g-16'>
-                                    <div className='video-container'>
-                                        <video autoPlay loop muted playsInline className='video-demo'>
+                                    <div className='video-container' style={{ aspectRatio: '1078/838'}}>
+                                        <video autoPlay loop muted playsInline className='video-demo' style={{ aspectRatio: '1078/838'}}>
                                             <source src={demoVid} type='video/mp4'></source>
                                         </video>
                                     </div>

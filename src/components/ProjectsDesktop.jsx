@@ -14,6 +14,7 @@ import { FileCode } from 'lucide-react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import RandrumContents from '../components/project-components/Randrum.jsx'
+import SoonContents from '../components/project-components/Soon.jsx'
 
 export default function ProjectsDesktop() {
 
@@ -21,7 +22,7 @@ export default function ProjectsDesktop() {
 
     const folderContents = {
         randrum: RandrumContents,
-        // soon: SoonContents,
+        soon: SoonContents,
         // ubook: UBookContents,
         // 'street-swipe': StreetSwipeContents,
         // birdbox: BirdboxContents,

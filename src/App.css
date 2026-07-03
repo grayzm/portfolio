@@ -32,6 +32,13 @@
   gap: 16px;
 }
 
+.text-s {
+  font-size: 10px;
+}
+.text-m {
+  font-size: 12px;
+}
+
 .app-container {
   background: var(--border);
   display: flex;
