@@ -15,8 +15,9 @@
 .hover-container {
     display: flex;
     flex-direction: column;
+    height: 90px;
     gap: 4px;
-    padding: 4px 12px;
+    padding: 8px 12px;
     justify-content: center;
     align-items: center;
 }

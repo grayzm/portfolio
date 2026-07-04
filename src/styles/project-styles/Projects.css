@@ -164,12 +164,17 @@ ul li::before {
 }
 
 .video-container {
+    position: relative;
     width: 100%;
 }
 
 .video-demo {
-    object-fit: contain;
+    position: absolute;
+    top: 0;
+    left: 0;
     width: 100%;
+    height: 100%;
+    object-fit: cover;
 }
 
 .parallax-container {
@@ -200,15 +205,15 @@ ul li::before {
     }
 }
 .background2 {
-    animation: loopParallaxLeftRight 25s linear infinite;
+    animation: loopParallaxLeftRight 30s linear infinite;
 }
 .background {
-    animation: loopParallaxLeftRight 20s linear infinite;
+    animation: loopParallaxLeftRight 25s linear infinite;
 }
 .middleground {
-    animation: loopParallaxLeftRight 15s linear infinite;
+    animation: loopParallaxLeftRight 20s linear infinite;
 }
 .foreground {
-    animation: loopParallaxLeftRight 10s linear infinite;
+    animation: loopParallaxLeftRight 15s linear infinite;
 }
 
