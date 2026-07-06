@@ -11,6 +11,12 @@
     width: 80%;
     height: 80%;
 }
+#ubook-window {
+    top: 8%;
+    right: 5%;
+    width: 80%;
+    height: 80%;
+}
 
 .project-container {
     position: relative;

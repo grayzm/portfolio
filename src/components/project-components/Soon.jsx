@@ -1,5 +1,5 @@
 import React, { act } from 'react';
-import '../../styles/project-styles/Projects.css';
+import '../../styles/Projects.css';
 import { useSoundFX } from '../useSoundFX';
 import { motion, AnimatePresence } from 'motion/react';
 
@@ -54,8 +54,8 @@ import lv3Sketch from '../../assets/visuals/soon/process/lv3-sketch.webp';
 export default function Soon({ folderName, key, closeFolder }) {
     const sounds = useSoundFX();
 
+    const contributions = ['Environmental art', 'Level design', 'UI/UX design', 'Concept development', 'Music composition', 'Quality assurance'];
     const tools = ['Aseprite', 'Unity', 'Logic Pro', 'Git'];
-    const contributions = ['Environmental art', 'Level design', 'UI design', 'Concept development', 'Music composition', 'Quality assurance'];
 
     const [infoPanelIsActive, setInfoPanelIsActive] = React.useState(true);
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);

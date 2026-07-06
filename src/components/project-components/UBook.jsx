@@ -1,21 +1,32 @@
 import React from 'react';
 import '../../styles/Projects.css';
 import { useSoundFX } from '../useSoundFX';
-import { motion, AnimatePresence } from 'motion/react';
+import { motion, AnimatePresence, useFollowValue } from 'motion/react';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-import landingView from '../../assets/visuals/randrum/landing-dark.webp';
-import practiceView from '../../assets/visuals/randrum/practice-sample-dark.webp';
-import createView from '../../assets/visuals/randrum/create-sample-dark.webp';
-import practiceBts from '../../assets/visuals/randrum/practice-bts.webp';
-import createBts from '../../assets/visuals/randrum/create-bts.webp';
-import demoVid from '../../assets/visuals/randrum/demo.mp4';
+import landing from '../../assets/visuals/ubook/product/landing.webp';
+import schedule from '../../assets/visuals/ubook/product/schedule.webp';
+import bookingInfo from '../../assets/visuals/ubook/product/booking-info.webp';
+import createBooking from '../../assets/visuals/ubook/product/create-booking.webp';
+import startBrowsing from '../../assets/visuals/ubook/product/start-browsing.webp';
+import selectTime from '../../assets/visuals/ubook/product/select-time.webp';
+import inputBookingInfo from '../../assets/visuals/ubook/product/input-booking-info.webp';
+import requestCarpool from '../../assets/visuals/ubook/product/request-carpool.webp';
+import activity from '../../assets/visuals/ubook/product/activity.webp';
+
+import userFlow from '../../assets/visuals/ubook/process/user-flow.webp';
+import designSystem from '../../assets/visuals/ubook/process/design-system.webp';
+import approvals from '../../assets/visuals/ubook/process/approvals.webp';
+import bookings from '../../assets/visuals/ubook/process/bookings.webp';
+import meetingRooms from '../../assets/visuals/ubook/process/meeting-rooms.webp';
+import { base } from 'motion/react-client';
 
 export default function Randrum({ folderName, key, closeFolder }) {
     const sounds = useSoundFX();
 
-    const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
+    const contributions = ['UI/UX design','Quality assurance'];
+    const tools = ['Figma', 'Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub'];
 
     const [infoPanelIsActive, setInfoPanelIsActive] = React.useState(true);
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);
@@ -77,8 +88,18 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                 <div className='info-panel'>
                                     <div className='scroll-container flex-column g-16'>
                                         <div className='flex flex-column g-4'>
-                                            <h1>Randrum</h1>
-                                            <p className='text-m'>Swift Student Challenge 2026 submission</p>
+                                            <h1>UBook</h1>
+                                            <p className='text-m'>ADA real client project</p>
+                                        </div>
+                                        <div className='flex flex-column g-4'>
+                                            <h2>Contributions</h2>
+                                            <div className='tools-container'>
+                                                {contributions.map((tool, index) => (
+                                                    <div className='tools' key={index}>
+                                                        <p className='text-m'>{tool}</p>
+                                                    </div>
+                                                ))}
+                                            </div>
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Tools</h2>
@@ -92,21 +113,23 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Overview</h2>
-                                            <p className='text-m'>A simple drum practice app developed to help beginner drummers train their ears to deconstruct drum patterns that are randomly generated. Users can recreate the given pattern and check to reveal the correct pattern visually.</p>
+                                            <p className='text-m'>UBook helps you manage your bookings and schedule with ease within an integrated system. Create, confirm, and cancel your bookings anytime, and send carpool requests when needed.</p>
                                         </div>
                                         <div className='flex flex-column'>
                                             <h2>Key decisions</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Adding constraints to the random pattern generation to produce rhythmically realistic patterns.</li>
-                                                <li>Procedural visuals over static graphics to reduce asset's size and support responsiveness.</li>
-                                                <li>Separating UIs into components for easier maintenance and iteration, and reusability.</li>
+                                                <li>Week view to focus on the schedule of the week, and calendar view to easily view booking history.</li>
+                                                <li>User can still view the available bookings even with minimum inputs.</li>
+                                                <li>Available bookings can be viewed through the empty slot in the schedule so users don't have to look through the "Book" tab.</li>
+                                                <li>Users can save a booking to use as template for repeated bookings.</li>
+                                                <li>Carpool requests and confirmation can be viewed in the activity tab.</li>
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
                                             <h2>Postmortem</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>On-boarding could be improved with guided tutorials, especially for non-musicians.</li>
-                                                <li>The 1/1 aspect-ratio for the pads prevents the UI to be fully responsive. Either the layout should be evaluated, or ignore the 1/1 aspect-ratio idealism.</li>
+                                                <li>Car bookings should display and update any changes caused by unexpected traffic. Users should be able to receive an estimated arrival time.</li>
+                                                <li>Though users can save a booking as template, an auto book feature could be useful for weekly meetings to ensure it doesn't get overtaken.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -141,22 +164,26 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                     {(activeDocumentations === 'product') && (
                                         <div className='product-contents'>
                                             <div className='scroll-container-x g-16'>
-                                                <div className='product-img' style={{ backgroundImage: `url(${landingView})`, aspectRatio: '1100/844' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${practiceView})`, aspectRatio: '1100/844' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${createView})`, aspectRatio: '1100/844' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${landing})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${schedule})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${bookingInfo})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${createBooking})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${startBrowsing})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${selectTime})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${inputBookingInfo})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${requestCarpool})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${activity})`, aspectRatio: '461/1000' }}></div>
                                             </div>
                                         </div>
                                     )}
                                     {(activeDocumentations === 'process') && (
                                         <div className='process-contents'>
                                             <div className='scroll-container-x g-16'>
-                                                <div className='video-container' style={{ aspectRatio: '1078/838'}}>
-                                                    <video autoPlay loop muted playsInline className='video-demo' style={{ aspectRatio: '1078/838'}}>
-                                                        <source src={demoVid} type='video/mp4'></source>
-                                                    </video>
-                                                </div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${practiceBts})`, aspectRatio: '1060/780' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${createBts})`, aspectRatio: '3024/1964' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${userFlow})`, aspectRatio: '1374/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${designSystem})`, aspectRatio: '1529/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${approvals})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${bookings})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${meetingRooms})`, aspectRatio: '461/1000' }}></div>
                                             </div>
                                         </div>
                                     )}
@@ -168,9 +195,9 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>
-                                                    My first solo project after graduating from the Apple Developer Academy. I was still just a designer then, so building it was a huge challenge.
-                                                    <br></br><br></br>The project ended up taking around 3 weeks to complete with 8+ hours of work a day, and a few all-nighters here and there.
-                                                    <br></br><br></br>I thoroughly enjoyed the whole process of building this app. This was what sparked my interest into exploring the world of coding. The joy of building something functional completely from scratch as well as debugging felt triumphant. This was the start of the rest of my personal projects and explorations.
+                                                    The problem of this project was simple. Bookings were managed by a department and approved by an admin. However, the simplicity was what made it challenging. "Do not solve the simple problem with a bazooka." was what one of my mentors said.
+                                                    <br></br><br></br>When faced with these kinds of problem, we often add unnecessary features and create a complicated solution to a simle problem. Someone managing the academy once said something along the lines of "You know you're done when you can no longer remove anything from it". This stuck with me ever since.
+                                                    <br></br><br></br>The initial design looked like Apple's native design since we followed Apple's human interface guidelines. I have not explored nor learned design systems so I relied heavily on Apple's best practices. The iterated design was made after I tried exploring different kinds of UI and made a design system for myself to follow. 
                                                 </p>
                                             </div>
                                         </div>

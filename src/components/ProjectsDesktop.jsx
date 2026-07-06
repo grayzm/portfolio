@@ -10,8 +10,9 @@ import birdboxIcon from '../assets/icons/birdbox.png';
 import rhysleepIcon from '../assets/icons/rhysleep.png';
 import { FileCode } from 'lucide-react';
 
-import RandrumContents from '../components/project-components/Randrum.jsx'
-import SoonContents from '../components/project-components/Soon.jsx'
+import RandrumContents from '../components/project-components/Randrum.jsx';
+import SoonContents from '../components/project-components/Soon.jsx';
+import UBookContents from '../components/project-components/UBook.jsx';
 
 export default function ProjectsDesktop() {
 
@@ -20,7 +21,7 @@ export default function ProjectsDesktop() {
     const folderContents = {
         randrum: RandrumContents,
         soon: SoonContents,
-        // ubook: UBookContents,
+        ubook: UBookContents,
         // 'street-swipe': StreetSwipeContents,
         // birdbox: BirdboxContents,
         // rhysleep: RhysleepContents,
@@ -39,15 +40,15 @@ export default function ProjectsDesktop() {
 
     const [openFolders, setOpenFolders] = React.useState([]);
 
-    const openFolder = (folderName) => {
+    const openFolder = (folderName, folderId) => {
         if (!openFolders.includes(folderName)) {
-            setOpenFolders((prev) => [...prev, folderName]);
+            setOpenFolders((prev) => [...prev, {id: folderId, name: folderName}]);
             sounds.playClick();
         }
     };
 
     const closeFolder = (folderName) => {
-        setOpenFolders((prev) => prev.filter((name) => name !== folderName));
+        setOpenFolders((prev) => prev.filter((folder) => folder.name !== folderName));
     };
 
     React.useEffect(() => {
@@ -62,7 +63,7 @@ export default function ProjectsDesktop() {
                         className='hover-container'
                         key={folder.id}
                         onClick={() => {
-                            openFolder(folder.name);
+                            openFolder(folder.name, folder.id);
                         }}
                     >
                         <div className='flex flex-column' style={{ height: '56px', justifyContent: 'center' }}>
@@ -79,11 +80,13 @@ export default function ProjectsDesktop() {
             </div>
 
             <div className='window-container'>
-                {openFolders.map((folderName, index) => {
-                    const SelectedContent = folderContents[folderName];
+                {openFolders.map(({ name, id }) => {
+                    const SelectedContent = folderContents[name];
+
+                    if (!SelectedContent) return null;
 
                     return (
-                        <SelectedContent folderName={folderName} key={index} closeFolder={closeFolder}/>
+                        <SelectedContent folderName={name} key={id} folderid={id} closeFolder={closeFolder}/>
                     )
                 })}
             </div>
