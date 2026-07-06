@@ -17,6 +17,12 @@
     width: 80%;
     height: 80%;
 }
+#street-swipe-window {
+    top: 12%;
+    right: 10%;
+    width: 80%;
+    height: 80%;
+}
 
 .project-container {
     position: relative;

@@ -13,6 +13,7 @@ import { FileCode } from 'lucide-react';
 import RandrumContents from '../components/project-components/Randrum.jsx';
 import SoonContents from '../components/project-components/Soon.jsx';
 import UBookContents from '../components/project-components/UBook.jsx';
+import StreetSwipeContents from '../components/project-components/StreetSwipe.jsx';
 
 export default function ProjectsDesktop() {
 
@@ -22,7 +23,7 @@ export default function ProjectsDesktop() {
         randrum: RandrumContents,
         soon: SoonContents,
         ubook: UBookContents,
-        // 'street-swipe': StreetSwipeContents,
+        'street-swipe': StreetSwipeContents,
         // birdbox: BirdboxContents,
         // rhysleep: RhysleepContents,
         // 'personal-website': PersonalWebsiteContents,

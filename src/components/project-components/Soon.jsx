@@ -61,7 +61,6 @@ export default function Soon({ folderName, key, closeFolder }) {
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);
     const [productIsActive, setProductIsActive] = React.useState(true);
     const [processIsActive, setProcessIsActive] = React.useState(false);
-
     const [activeDocumentations, setActiveDocumentations] = React.useState('product');
 
     const documentations = ['product', 'process', 'tileset'];
@@ -172,6 +171,7 @@ export default function Soon({ folderName, key, closeFolder }) {
                                         <div className='flex flex-column'>
                                             <h2>Postmortem</h2>
                                             <ul style={{ textAlign: 'left' }}>
+                                                <li>Learned how to connect narratice, gameplay systems, visual design, and music into a unified emotional experience.</li>
                                                 <li>The environments were larger than necessary, resulting in excessive empty space relative to the player's movement.</li>
                                                 <li>The project's scope was ambitious for a team of five beginners working within a 2.5-month timeframe, causing some level designs and mechanics to feel rushed.</li>
                                                 <li>Some puzzles were either too difficult for playtesters or could be solved through unintended solutions.</li>
