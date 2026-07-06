@@ -3,6 +3,7 @@ import '../styles/ProfileDesktop.css';
 import { useTheme } from './Theme.jsx';
 import { useSoundFX } from './useSoundFX.jsx';
 import { motion, AnimatePresence } from 'motion/react';
+import Draggable from 'react-draggable';
 
 import { FolderIcon } from '@heroicons/react/24/outline';
 import { FolderClosed } from 'lucide-react';
@@ -21,6 +22,7 @@ import instagramIconDark from '../assets/icons/instagram-dark.png';
 import soundCloudIconDark from '../assets/icons/soundcloud-dark.png';
 
 export default function ProfileDesktop() {
+
   const sounds = useSoundFX();
 
   const folderContents = {
@@ -31,13 +33,13 @@ export default function ProfileDesktop() {
     'contact-socials': ContactContents,
   };
 
-  const folders = [
-    { id: 1, name: 'about', type: 'file' },
-    { id: 2, name: 'education-awards-honors', type: 'file' },
-    { id: 3, name: 'tools', type: 'file' },
-    { id: 4, name: 'interests', type: 'file' },
-    { id: 5, name: 'contact-socials', type: 'folder' },
-  ];
+  const [folders, setFolders] = React.useState([
+    { id: 1, name: 'about', type: 'file', x: 0, y: 0 },
+    { id: 2, name: 'education-awards-honors', type: 'file', x: 100, y: 100 },
+    { id: 3, name: 'tools', type: 'file', x: 200, y: 200 },
+    { id: 4, name: 'interests', type: 'file', x: 300, y: 300 },
+    { id: 5, name: 'contact-socials', type: 'folder', x: 400, y: 400 },
+  ]);
 
   const [openFolders, setOpenFolders] = React.useState([]);
 
@@ -55,6 +57,16 @@ export default function ProfileDesktop() {
   React.useEffect(() => {
     console.log("State updated successfully:", openFolders);
   }, [openFolders]);
+
+  const [activeWindow, setActiveWindow] = React.useState(null);
+
+  const handelDragStop = (name, data) => {
+    setFolders((prev) =>
+      prev.map((folder) =>
+        folder.name === name ? { ...folder, x: data.x, y: data.y } : folder
+      )
+    );
+  };
 
   return (
     <div className='profile-desktop'>
@@ -78,42 +90,70 @@ export default function ProfileDesktop() {
       </div>
 
       <div className='window-container'>
-        {openFolders.map((folderName, index) => {
-          const SelectedContent = folderContents[folderName];
-
-          return (
-            <AnimatePresence>
-              <motion.div
-                className='window'
-                id={`${folderName}-window`}
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <div className="window-title">
-                  <p>{folderName}</p>
-                  <div
-                    className="window-btn"
-                    onClick={() => {
-                      closeFolder(folderName);
-                      sounds.playClick();
-                    }}
-                  >
-                    <XMarkIcon width={14} height={14} strokeWidth={2} />
-                  </div>
-                </div>
-                <div className='window-contents p-20'>
-                  <div className='scroll-container' id={`${folderName}-container`}>
-                    <SelectedContent />
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
-          );
-        })}
+        <AnimatePresence>
+          {openFolders.map((folderName, index) => (
+            <ProfileDesktopContents 
+              key={folderName}
+              folderName={folderName}
+              isTop={folderName === activeWindow}
+              totalWindows={openFolders.length}
+              onFocus={() => setActiveWindow(folderName)}
+              onClose={() => {
+                closeFolder(folderName);
+                sounds.playClick();
+              }}
+              Content={folderContents[folderName]}
+            />
+          ))}
+        </AnimatePresence>
       </div>
     </div>
+  );
+}
+
+function ProfileDesktopContents({ folderName, isTop, totalWindows, onFocus, onClose, Content }) {
+  const nodeRef = React.useRef(null);
+  const currentZIndex = isTop ? totalWindows + 10 : 1;
+
+  return (
+      <Draggable 
+        nodeRef={nodeRef} 
+        handle='.window-title'
+      >
+        <div
+          ref={nodeRef}
+          id={`${folderName}-window`}
+          style={{ position: 'absolute', zIndex: currentZIndex, height: 'auto', pointerEvents: 'auto' }}
+        >
+          <motion.div
+            className='window'
+            style={{ width: '100%', height: 'fit-content'}}
+            onMouseDown={onFocus}
+
+            initial={{ opacity: 0, scale: 0.5 }}
+            animate={{ opacity: 1, scale: 1 }}
+            exit={{ opacity: 0, scale: 0 }}
+          >
+            <div className="window-title">
+              <p>{folderName}</p>
+              <div
+                className="window-btn"
+                onClick={(e) => {
+                  e.stopPropagation();
+                  onClose();
+                }}
+              >
+                <XMarkIcon width={14} height={14} strokeWidth={2} />
+              </div>
+            </div>
+            <div className='window-contents p-20'>
+              <div className='scroll-container' id={`${folderName}-container`}>
+                <Content />
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </Draggable>
   );
 }
 
