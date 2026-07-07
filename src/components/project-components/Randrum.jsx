@@ -78,7 +78,7 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                     <div className='scroll-container flex-column g-16'>
                                         <div className='flex flex-column g-4'>
                                             <h1>Randrum</h1>
-                                            <p className='text-m'>Swift Student Challenge 2026 submission</p>
+                                            <p className='text-m'>iPadOS application, Swift Student Challenge 2026 submission</p>
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Tools</h2>
@@ -92,21 +92,21 @@ export default function Randrum({ folderName, key, closeFolder }) {
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Overview</h2>
-                                            <p className='text-m'>A simple drum practice app developed to help beginner drummers train their ears to deconstruct drum patterns that are randomly generated. Users can recreate the given pattern and check to reveal the correct pattern visually.</p>
+                                            <p className='text-m'>Randrum is a drum practice app that helps beginner drummers develop their rhythmic listening skills through procedurally generated drum patterns. Players recreate each pattern by ear before revealing the correct answer visually.</p>
                                         </div>
                                         <div className='flex flex-column'>
                                             <h2>Key decisions</h2>
                                             <ul style={{ textAlign: 'left' }}>
                                                 <li>Adding constraints to the random pattern generation to produce rhythmically realistic patterns.</li>
-                                                <li>Procedural visuals over static graphics to reduce asset's size and support responsiveness.</li>
+                                                <li>Generated visuals procedurally instead of relying on static assets, reducing application size while improving responsiveness.</li>
                                                 <li>Separating UIs into components for easier maintenance and iteration, and reusability.</li>
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
-                                            <h2>Postmortem</h2>
+                                            <h2>Insights</h2>
                                             <ul style={{ textAlign: 'left' }}>
                                                 <li>On-boarding could be improved with guided tutorials, especially for non-musicians.</li>
-                                                <li>The 1/1 aspect-ratio for the pads prevents the UI to be fully responsive. Either the layout should be evaluated, or ignore the 1/1 aspect-ratio idealism.</li>
+                                                <li>Designing perfectly square drum pads proved challenging across different device sizes, reinforcing the importance of responsive layouts from the beginning.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -164,13 +164,13 @@ export default function Randrum({ folderName, key, closeFolder }) {
 
                                 {logPanelIsActive && (
                                     <div className='log-panel'>
-                                        <div className='window-title'><p>logs</p></div>
+                                        <div className='window-title'><p>development log</p></div>
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>
                                                     My first solo project after graduating from the Apple Developer Academy. I was still just a designer then, so building it was a huge challenge.
                                                     <br></br><br></br>The project ended up taking around 3 weeks to complete with 8+ hours of work a day, and a few all-nighters here and there.
-                                                    <br></br><br></br>I thoroughly enjoyed the whole process of building this app. This was what sparked my interest into exploring the world of coding. The joy of building something functional completely from scratch as well as debugging felt triumphant. This was the start of the rest of my personal projects and explorations.
+                                                    <br></br><br></br>I thoroughly enjoyed the whole process of building this app. This project sparked my interest in programming. The joy of building something functional completely from scratch as well as solving bugs became surprisingly rewarding. This was the start of the rest of my personal projects and explorations.
                                                 </p>
                                             </div>
                                         </div>

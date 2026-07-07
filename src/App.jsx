@@ -6,7 +6,7 @@ import Dock from './components/Dock'
 import ProfileDesktop from './components/ProfileDesktop'
 
 import { IdCard } from "lucide-react";
-import { FolderOpen } from "lucide-react";
+import { BriefcaseBusiness } from "lucide-react";
 import { Gamepad2 } from "lucide-react";
 import { LibraryBig } from "lucide-react";
 import { Lock } from "lucide-react";
@@ -15,16 +15,16 @@ import ProjectsDesktop from './components/ProjectsDesktop'
 function App() {
 
   const desktops = [
+    { name: 'projects', icon: BriefcaseBusiness, isActive: false, isLocked: false },
     { name: 'about', icon: IdCard, isActive: false, isLocked: false },
-    { name: 'projects', icon: FolderOpen, isActive: false, isLocked: false },
     { name: 'playground', icon: Gamepad2, isActive: false, isLocked: false },
     { name: 'documentations', icon: LibraryBig, isActive: false, isLocked: false },
     { name: 'locked', icon: Lock, isActive: false, isLocked: true}
   ];
 
   const desktopComponents = {
-    about: <ProfileDesktop />,
     projects: <ProjectsDesktop />,
+    about: <ProfileDesktop />,
   }
   const [activeDesktop, setActiveDesktop] = React.useState('ProfileDesktop');
 
@@ -39,7 +39,7 @@ function App() {
             setActiveDesktop={setActiveDesktop}
           />
           <div className='desktop-container'>
-            {desktopComponents[activeDesktop] || <ProfileDesktop />}
+            {desktopComponents[activeDesktop] || <ProjectsDesktop />}
           </div>
         </div>
       </ThemeProvider>

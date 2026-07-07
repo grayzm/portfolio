@@ -30,7 +30,7 @@ import middleLowHit from '../../assets/visuals/birdbox/assets/middle-low-hit.gif
 
 export default function Birdbox({ folderName, key, closeFolder }) {
     const sounds = useSoundFX();
-    const theme = useTheme();
+    const { theme } = useTheme();
 
     const contributions = ['3D modeling', 'Rigging', 'Animation', 'UI/UX design', 'Music composition', 'Landing screen', 'Character select screen'];
     const tools = ['Blender', 'Adobe Illustrator', 'Swift', 'SwiftUI', 'GarageBand'];
@@ -125,17 +125,17 @@ export default function Birdbox({ folderName, key, closeFolder }) {
                                         <div className='flex flex-column'>
                                             <h2>Key decisions</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Used AR to create face-tao-face social interaction.</li>
+                                                <li>Used AR to create face-to-face social interaction.</li>
                                                 <li>Reframed a controversial real-world activity into a humorous game.</li>
-                                                <li>Chose stylized chicken to keep the experience playful.</li>
+                                                <li>Chose stylized chickens to keep the experience playful.</li>
                                                 <li>Prioritized quick matches and readable combat.</li>
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
-                                            <h2>Postmortem</h2>
+                                            <h2>Insights</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>The button UI should show what it does to make the UX more intuitive.</li>
-                                                <li>Add more variety of chickens to with different abilities for strategy.</li>
+                                                <li>The action button UI should show what it does to make the UX more intuitive.</li>
+                                                <li>Add more variety of chickens with different abilities for strategy.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -172,7 +172,7 @@ export default function Birdbox({ folderName, key, closeFolder }) {
                                             <div className='scroll-container-x g-16'>
                                                 <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gridTemplateColumns: '1fr', rowGap: '16px' }}>
                                                     <div className='product-img' style={{ backgroundImage: `url(${landing})`, aspectRatio: '2167/1000' }}></div>
-                                                    <div className='product-img' style={{ backgroundImage: `url(${theme === 'dark' ? characterDark : characterLight })`, aspectRatio: '2167/1000' }}></div>
+                                                    <div className='product-img' style={{ backgroundImage: `url(${theme === 'dark' ? characterDark : characterLight})`, aspectRatio: '2167/1000' }}></div>
                                                 </div>
                                                 <div style={{ display: 'grid', gridTemplateRows: '1fr 1fr', gridTemplateColumns: '1fr', rowGap: '16px' }}>
                                                     <div className='product-img' style={{ backgroundImage: `url(${fightVid})`, aspectRatio: '2168/1000' }}></div>
@@ -213,14 +213,14 @@ export default function Birdbox({ folderName, key, closeFolder }) {
 
                                 {logPanelIsActive && (
                                     <div className='log-panel'>
-                                        <div className='window-title'><p>logs</p></div>
+                                        <div className='window-title'><p>development log</p></div>
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>
                                                     I didn't think I would be learning game development so soon after I started learning app development, let alone Blender. I knew it'd take a lot of time and effort to master it. However, I'm up for the challenge.
                                                     <br></br><br></br>Like most people, I started with the donut tutorial. Surprisingly, I made it in a night. I jumped straight into the next tutorial which is making a fox character. The scary thing about learning something new for a set deadline is, you don't know how long it'll take for you to be decently skilled at it. Getting a tad concerned, I stopped the tutorial halfway and started experimenting for myself to model the chicken. I need to spare myself time for errors more time learning to rig and animate.
                                                     <br></br><br></br>After I was satisfied my chicken, I went into rigging and animating. Weight painting wasn't easy to understand, and Blender's UI doesn't help. After a few trial and errors, I finally got the hang of it. I was also getting comfortable animating that I made more animation than needed.
-                                                    <br></br><br></br>I never thought animating in Blender would be that amusing. Glad I had the chance to learn Blender. Definitely going to try to master it one day.
+                                                    <br></br><br></br>I never thought animating in Blender would be that amusing. I'm glad I had the chance to learn Blender. Definitely going to try to master it one day.
                                                 </p>
                                             </div>
                                         </div>

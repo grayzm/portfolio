@@ -122,10 +122,10 @@ export default function StreetSwipe({ folderName, key, closeFolder }) {
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
-                                            <h2>Postmortem</h2>
+                                            <h2>Insights</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Learned to create a short but enjoyable game that also challenges genre conventions.</li>
-                                                <li>Difficulty vaires among players. Some found it hard while others survived until they got bored.</li>
+                                                <li>Building a short but enjoyable game with minimal mechanics that also challenges genre conventions.</li>
+                                                <li>Difficulty varies among players. Some found it hard while others survived until they got bored.</li>
                                                 <li>Players should be given a short tutorial that shows every features, or an introduction to a new feature mid-game should be clear.</li>
                                             </ul>
                                         </div>
@@ -190,13 +190,13 @@ export default function StreetSwipe({ folderName, key, closeFolder }) {
 
                                 {logPanelIsActive && (
                                     <div className='log-panel'>
-                                        <div className='window-title'><p>logs</p></div>
+                                        <div className='window-title'><p>development log</p></div>
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>
                                                     Initially, we were torn between top-down view in 2D and front-view in 2.5D - pseudo 3D. The programming wouldv'e been way easier done in 2D. 2.5D however, looks enticing, especially our mentor showed us the possibility of it.
                                                     <br></br><br></br>According to the programmers I worked with, they had to cut the road, bring them up, then scale them as they go downwards bit by bit in a loop. However, since we're working with pixel art, scaling them created a whole other problem, which was eventually solved thankfully.
-                                                    <br></br><br></br>During our first playtest, I haven't learned about game juices and the importance of feedbacks. Braking on a red light decreased the excitement stunned the flow of the game when it was supposed to be the point of the game. Having received this feedback, we created a point system which rewards players for their survival duration as well as how close they brake behind the line. The closer they are to the line, the greater the point. This was accompanied with visual and auditory feedback to add to the satisfaction.
+                                                    <br></br><br></br>During our first playtest, I haven't learned about game juice and the importance of feedback. Braking on a red light decreased the excitement stunned the flow of the game when it was supposed to be the point of the game. Having received this feedback, we created a point system which rewards players for their survival duration as well as how close they brake behind the line. The closer they are to the line, the greater the point. This was accompanied with visual and auditory feedback to add to the satisfaction.
                                                     <br></br><br></br>That addition changed our game entirely. The traffic light became an opportunity to farm points and a test of timing skills. The leaderboard addition was a cherry on top to increase competitiveness among players. 
                                                 </p>
                                             </div>

@@ -155,7 +155,7 @@ export default function Soon({ folderName, key, closeFolder }) {
                                             <h2>Environment</h2>
                                             <p className='text-m'>
                                                 The environment plays a key role in conveying Willow's emotional journey. Set across two worlds, players transition between Willow's reality and her mental world as the story unfolds.
-                                                <br></br><br></br>The mental world is designed to evoke curiosity and a sense of adventure, while the contrast between the two settings hints at a deeper mystery beneath the surface. As the narrative progresses, both worlds gradually become more deteriorated and desaturated, symbolizing Willow's perception of reality falling apart and revealing the forgotten truth. By the final revelation, when players discover that Willow has been elderly all along, the world has noticeably lost its color, mirroring how aging can alter our perception of the world.
+                                                <br></br><br></br>The mental world is designed to evoke curiosity and a sense of adventure, while the contrast between the two settings hints at a deeper mystery beneath the surface. As the narrative progresses, both worlds gradually become more deteriorated and desaturated, reflecting Willow's deteriorating perception of reality and revealing the forgotten truth. By the final revelation, when players discover that Willow has been elderly all along, the world has noticeably lost its color, mirroring how aging can alter our perception of the world.
                                             </p>
                                         </div>
                                         <div className='flex flex-column'>
@@ -165,17 +165,17 @@ export default function Soon({ folderName, key, closeFolder }) {
                                                 <li>Designed progression around discovery, slowly pulling the player's interest towards unraveling the mystery.</li>
                                                 <li>Used environment transitions to mirror Willow's mental state.</li>
                                                 <li>Built a narrative that relied heavily on symbolism rather than exposition.</li>
-                                                <li>Used camera movements to indicate which way the players should go.</li>
+                                                <li>Used camera movement to subtly guide player navigation.</li>
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
-                                            <h2>Postmortem</h2>
+                                            <h2>Insights</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Learned how to connect narratice, gameplay systems, visual design, and music into a unified emotional experience.</li>
-                                                <li>The environments were larger than necessary, resulting in excessive empty space relative to the player's movement.</li>
+                                                <li>Demonstrated how narrative, gameplay, visual design, and music can reinforce one another to create a cohesive emotional experience.</li>
+                                                <li>Oversized environments introduced unnecessary traversal time and reduced pacing.</li>
                                                 <li>The project's scope was ambitious for a team of five beginners working within a 2.5-month timeframe, causing some level designs and mechanics to feel rushed.</li>
-                                                <li>Some puzzles were either too difficult for playtesters or could be solved through unintended solutions.</li>
-                                                <li>Transitions between different settings, backgrounds, and foreground elements could be made smoother.</li>
+                                                <li>Several puzzles proved either unintentionally difficult or allowed unintended solutions during playtesting.</li>
+                                                <li>Transitions between different settings, backgrounds, and foreground elements could be done smoother.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -317,7 +317,7 @@ export default function Soon({ folderName, key, closeFolder }) {
                         
                                 {logPanelIsActive && (
                                     <div className='log-panel'>
-                                        <div className='window-title'><p>logs</p></div>
+                                        <div className='window-title'><p>development log</p></div>
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>

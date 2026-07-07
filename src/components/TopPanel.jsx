@@ -51,7 +51,7 @@ export default function TopPanel() {
   return (
     <>
         <div className="top-panel">
-            <h2>Graice's space</h2>
+            <h2>Graicella Michelle S</h2>
             <div id="date-time">
                 <h2>{weekday} {date}</h2>
                 <h2>{time}</h2>
@@ -89,6 +89,7 @@ export default function TopPanel() {
                                                 setTheme(btn.label);
                                                 setActiveTheme(btn.id);
                                                 sounds.playSwitch();
+                                                console.log(`current theme: ${theme}`)
                                             }
                                         }}
                                     >

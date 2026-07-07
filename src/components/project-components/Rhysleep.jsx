@@ -5,27 +5,36 @@ import { motion, AnimatePresence, useFollowValue } from 'motion/react';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
-import landing from '../../assets/visuals/ubook/product/landing.webp';
-import schedule from '../../assets/visuals/ubook/product/schedule.webp';
-import bookingInfo from '../../assets/visuals/ubook/product/booking-info.webp';
-import createBooking from '../../assets/visuals/ubook/product/create-booking.webp';
-import startBrowsing from '../../assets/visuals/ubook/product/start-browsing.webp';
-import selectTime from '../../assets/visuals/ubook/product/select-time.webp';
-import inputBookingInfo from '../../assets/visuals/ubook/product/input-booking-info.webp';
-import requestCarpool from '../../assets/visuals/ubook/product/request-carpool.webp';
-import activity from '../../assets/visuals/ubook/product/activity.webp';
+import landing from '../../assets/visuals/rhysleep/product/landing.webp';
+import questionnaire from '../../assets/visuals/rhysleep/product/questionnaire.webp';
+import chronotype from '../../assets/visuals/rhysleep/product/chronotype.webp';
+import statsitcs from '../../assets/visuals/rhysleep/product/statistics.webp';
+import weekly from '../../assets/visuals/rhysleep/product/weekly.webp';
+import monthly from '../../assets/visuals/rhysleep/product/monthly.webp';
+import heartRate from '../../assets/visuals/rhysleep/product/heart-rate.webp';
+import meditations from '../../assets/visuals/rhysleep/product/meditations.webp';
+import breathing from '../../assets/visuals/rhysleep/product/breathing.webp';
+import backgroundNoise from '../../assets/visuals/rhysleep/product/background-noise.webp';
 
-import userFlow from '../../assets/visuals/ubook/process/user-flow.webp';
-import designSystem from '../../assets/visuals/ubook/process/design-system.webp';
-import approvals from '../../assets/visuals/ubook/process/approvals.webp';
-import bookings from '../../assets/visuals/ubook/process/bookings.webp';
-import meetingRooms from '../../assets/visuals/ubook/process/meeting-rooms.webp';
+import userFlow from '../../assets/visuals/rhysleep/process/userflow.webp';
+import wireframe from '../../assets/visuals/rhysleep/process/wireframe.webp';
+import designSystem from '../../assets/visuals/rhysleep/process/design-system.webp';
+import landingOld from '../../assets/visuals/rhysleep/process/landing.webp';
+import questionnaireOld from '../../assets/visuals/rhysleep/process/questionnaire.webp';
+import chronotypeOld from '../../assets/visuals/rhysleep/process/chronotype.webp';
+import daily from '../../assets/visuals/rhysleep/process/daily.webp';
+import badScore from '../../assets/visuals/rhysleep/process/bad-score.webp';
+import sleepStage from '../../assets/visuals/rhysleep/process/sleep-stage.webp';
+import heartRateOld from '../../assets/visuals/rhysleep/process/heart-rate.webp';
+import therapy from '../../assets/visuals/rhysleep/process/therapy.webp';
+import breathingOld from '../../assets/visuals/rhysleep/process/breathing.webp';
+import whiteNoise from '../../assets/visuals/rhysleep/process/white-noise.webp';
 
-export default function UBook({ folderName, key, closeFolder }) {
+export default function Rhysleep({ folderName, key, closeFolder }) {
     const sounds = useSoundFX();
 
     const contributions = ['UX research', 'UI design', 'Hi-fi protoyping', 'Quality assurance'];
-    const tools = ['Figma', 'Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub'];
+    const tools = ['Figma'];
 
     const [infoPanelIsActive, setInfoPanelIsActive] = React.useState(true);
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);
@@ -87,8 +96,8 @@ export default function UBook({ folderName, key, closeFolder }) {
                                 <div className='info-panel'>
                                     <div className='scroll-container flex-column g-16'>
                                         <div className='flex flex-column g-4'>
-                                            <h1>UBook</h1>
-                                            <p className='text-m'>iOS application, ADA real client project</p>
+                                            <h1>Rhysleep</h1>
+                                            <p className='text-m'>iOS application</p>
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Contributions</h2>
@@ -112,23 +121,24 @@ export default function UBook({ folderName, key, closeFolder }) {
                                         </div>
                                         <div className='flex flex-column g-4'>
                                             <h2>Overview</h2>
-                                            <p className='text-m'>UBook helps you manage your bookings and schedule with ease within an integrated system. Create, confirm, and cancel your bookings anytime, and send carpool requests when needed.</p>
+                                            <p className='text-m'>A sleep companion app that helps users improve their sleeping habits by aligning their circadian rhythm with their natural chronotype.</p>
                                         </div>
                                         <div className='flex flex-column'>
                                             <h2>Key decisions</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Prioritized a week-based schedule view while preserving a full calendar for historical bookings.</li>
-                                                <li>Minimized required input before showing available bookings.</li>
-                                                <li>Inegrated available booking slots directly into the schedule to reduce navigation between screens.</li>
-                                                <li>Introduced booking templates to help create repeated bookings efficiently.</li>
-                                                <li>All updates and notifications can be viewed in a separate activity tab.</li>
+                                                <li>Prioritized clarity and ease of use over feature-heavy interfaces.</li>
+                                                <li>Used a calm visual language to reinforce the app's purpose.</li>
+                                                <li>Simple data representation to improve understanding.</li>
+                                                <li>Structured user flows around bedtime and wake-up routines.</li>
+                                                <li>Focused on reducing friction so users could quickly complete common tasks.</li>
                                             </ul>
                                         </div>
                                         <div className='flex flex-column'>
                                             <h2>Insights</h2>
                                             <ul style={{ textAlign: 'left' }}>
-                                                <li>Car bookings should display and update any changes caused by unexpected traffic. Users should be able to receive an estimated arrival time.</li>
-                                                <li>Though users can save a booking as template, an auto book feature could be useful for weekly meetings to ensure it doesn't get overtaken.</li>
+                                                <li>Visualizing primary data that users could easily understand without overwhelming them with information.</li>
+                                                <li>Categorizing data into sections and priority order to imporve focus.</li>
+                                                <li>Designing user flows that are both intuitive and easy to navigate.</li>
                                             </ul>
                                         </div>
                                     </div>
@@ -163,26 +173,35 @@ export default function UBook({ folderName, key, closeFolder }) {
                                     {(activeDocumentations === 'product') && (
                                         <div className='product-contents'>
                                             <div className='scroll-container-x g-16'>
-                                                <div className='product-img' style={{ backgroundImage: `url(${landing})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${schedule})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${bookingInfo})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${createBooking})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${startBrowsing})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${selectTime})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${inputBookingInfo})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${requestCarpool})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${activity})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${landing})`, aspectRatio: '393/852' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${questionnaire})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${chronotype})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${statsitcs})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${weekly})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${monthly})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${heartRate})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${meditations})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${breathing})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${backgroundNoise})`, aspectRatio: '461/1000' }}></div>
                                             </div>
                                         </div>
                                     )}
                                     {(activeDocumentations === 'process') && (
                                         <div className='process-contents'>
                                             <div className='scroll-container-x g-16'>
-                                                <div className='product-img' style={{ backgroundImage: `url(${userFlow})`, aspectRatio: '1374/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${designSystem})`, aspectRatio: '1529/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${approvals})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${bookings})`, aspectRatio: '461/1000' }}></div>
-                                                <div className='product-img' style={{ backgroundImage: `url(${meetingRooms})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${userFlow})`, aspectRatio: '1586/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${wireframe})`, aspectRatio: '1512/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${designSystem})`, aspectRatio: '1734/938' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${landingOld})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${questionnaireOld})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${chronotypeOld})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${daily})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${badScore})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${sleepStage})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${heartRateOld})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${therapy})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${breathingOld})`, aspectRatio: '461/1000' }}></div>
+                                                <div className='product-img' style={{ backgroundImage: `url(${whiteNoise})`, aspectRatio: '461/1000' }}></div>
                                             </div>
                                         </div>
                                     )}
@@ -194,9 +213,9 @@ export default function UBook({ folderName, key, closeFolder }) {
                                         <div className='log-contents'>
                                             <div className='scroll-container'>
                                                 <p className='text-m'>
-                                                    The problem of this project was simple. Bookings were managed by a department and approved by an admin. However, the simplicity was what made it challenging. "Do not solve the simple problem with a bazooka." was what one of my mentors said.
-                                                    <br></br><br></br>When faced with these kinds of problem, we often add unnecessary features and create a complicated solution to a simle problem. Someone managing the academy once said something along the lines of "You know you're done when you can no longer remove anything from it". This stuck with me ever since.
-                                                    <br></br><br></br>The initial design looked like Apple's native design since we followed Apple's human interface guidelines. I have not explored nor learned design systems so I relied heavily on Apple's best practices. The iterated design was made after I tried exploring different kinds of UI and made a design system for myself to follow. 
+                                                    The questions that had always been on my mind when designing Rhysleep were, "What information does the user need to view first when they open the app?", and "How do I visualize the data to make it quick and easy to consume?". In order to answer that question, I had to do an extensive research on circadian rhythm, sleep monitoring, and sleep quality.
+                                                    <br></br><br></br>Color and shape are useful tools for organizing information, but using too many visual cues can quickly overwhelm the interface. So, users should only be presented with the primary data first. They can view secondary data if they're interested to know more by taking an action, and this needs to be clearly shown. 
+                                                    <br></br><br></br>The iterated design was heavily inspired by Apple's Fitness app. As a user, the information I receive upon opening the app was clear. It was easy and intuitive to navigate, and discovering deeper, secondary information got me hooked. This kind of experience was what I would like Rhysleep's users to have.
                                                 </p>
                                             </div>
                                         </div>

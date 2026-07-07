@@ -5,7 +5,7 @@ import { useSoundFX } from './useSoundFX';
 import randrumIcon from '../assets/icons/randrum.png';
 import soonIcon from '../assets/icons/soon.png';
 import ubookIcon from '../assets/icons/ubook.png';
-import streetSwipeIcon from '../assets/icons/street-swipe.png';
+import streetSwipeIcon from '../assets/icons/street-swipe2.png';
 import birdboxIcon from '../assets/icons/birdbox.png';
 import rhysleepIcon from '../assets/icons/rhysleep.png';
 import { FileCode } from 'lucide-react';
@@ -15,6 +15,7 @@ import SoonContents from '../components/project-components/Soon.jsx';
 import UBookContents from '../components/project-components/UBook.jsx';
 import StreetSwipeContents from '../components/project-components/StreetSwipe.jsx';
 import BirdboxContents from '../components/project-components/Birdbox.jsx';
+import RhysleepContents from '../components/project-components/Rhysleep.jsx';
 
 export default function ProjectsDesktop() {
 
@@ -26,7 +27,7 @@ export default function ProjectsDesktop() {
         ubook: UBookContents,
         'street-swipe': StreetSwipeContents,
         birdbox: BirdboxContents,
-        // rhysleep: RhysleepContents,
+        rhysleep: RhysleepContents,
         // 'personal-website': PersonalWebsiteContents,
     };
 
@@ -37,7 +38,7 @@ export default function ProjectsDesktop() {
         { id: 4, name: 'street-swipe', type: 'game', iconType: 'img', icon: streetSwipeIcon },
         { id: 5, name: 'birdbox', type: 'game', iconType: 'img', icon: birdboxIcon },
         { id: 6, name: 'rhysleep', type: 'app', iconType: 'img', icon: rhysleepIcon },
-        { id: 7, name: 'personal-website', type: 'web', iconType: 'code', icon: FileCode },
+        // { id: 7, name: 'personal-website', type: 'web', iconType: 'code', icon: FileCode },
     ]
 
     const [openFolders, setOpenFolders] = React.useState([]);
