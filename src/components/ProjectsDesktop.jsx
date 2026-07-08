@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/ProjectsDesktop.css'
 import { useSoundFX } from './useSoundFX';
+import { AnimatePresence } from 'motion/react';
 
 import randrumIcon from '../assets/icons/randrum.png';
 import soonIcon from '../assets/icons/soon.png';
@@ -32,20 +33,56 @@ export default function ProjectsDesktop() {
     };
 
     const folders = [
-        { id: 1, name: 'randrum', type: 'app', iconType: 'img', icon: randrumIcon },
-        { id: 2, name: 'soon', type: 'game', iconType: 'img', icon: soonIcon },
-        { id: 3, name: 'ubook', type: 'app', iconType: 'img', icon: ubookIcon },
-        { id: 4, name: 'street-swipe', type: 'game', iconType: 'img', icon: streetSwipeIcon },
-        { id: 5, name: 'birdbox', type: 'game', iconType: 'img', icon: birdboxIcon },
-        { id: 6, name: 'rhysleep', type: 'app', iconType: 'img', icon: rhysleepIcon },
+        { 
+            id: 1, 
+            name: 'randrum', 
+            type: 'app', 
+            iconType: 'img', 
+            icon: randrumIcon, 
+        },
+        { 
+            id: 2, 
+            name: 'soon', 
+            type: 'game', 
+            iconType: 'img', 
+            icon: soonIcon, 
+        },
+        { 
+            id: 3, 
+            name: 'ubook', 
+            type: 'app', 
+            iconType: 'img', 
+            icon: ubookIcon, 
+        },
+        { 
+            id: 4, 
+            name: 'street-swipe', 
+            type: 'game', 
+            iconType: 'img', 
+            icon: streetSwipeIcon, 
+        },
+        { 
+            id: 5, 
+            name: 'birdbox', 
+            type: 'game', 
+            iconType: 'img', 
+            icon: birdboxIcon, 
+        },
+        { 
+            id: 6, 
+            name: 'rhysleep', 
+            type: 'app', 
+            iconType: 'img', 
+            icon: rhysleepIcon, 
+        },
         // { id: 7, name: 'personal-website', type: 'web', iconType: 'code', icon: FileCode },
     ]
 
     const [openFolders, setOpenFolders] = React.useState([]);
 
-    const openFolder = (folderName, folderId) => {
-        if (!openFolders.includes(folderName)) {
-            setOpenFolders((prev) => [...prev, {id: folderId, name: folderName}]);
+    const openFolder = (folder) => {
+        if (!openFolders.includes(folder.name)) {
+            setOpenFolders((prev) => [...prev, folder]);
             sounds.playClick();
         }
     };
@@ -66,7 +103,7 @@ export default function ProjectsDesktop() {
                         className='hover-container'
                         key={folder.id}
                         onClick={() => {
-                            openFolder(folder.name, folder.id);
+                            openFolder(folder);
                         }}
                     >
                         <div className='flex flex-column' style={{ height: '56px', justifyContent: 'center' }}>
@@ -83,15 +120,17 @@ export default function ProjectsDesktop() {
             </div>
 
             <div className='window-container'>
-                {openFolders.map(({ name, id }) => {
-                    const SelectedContent = folderContents[name];
+                <AnimatePresence>
+                    {openFolders.map(({ name, id }) => {
+                        const SelectedContent = folderContents[name];
 
-                    if (!SelectedContent) return null;
+                        if (!SelectedContent) return null;
 
-                    return (
-                        <SelectedContent folderName={name} key={id} folderid={id} closeFolder={closeFolder}/>
-                    )
-                })}
+                        return (
+                            <SelectedContent folderName={name} key={id} folderid={id} closeFolder={closeFolder}/>
+                        )
+                    })}
+                </AnimatePresence>
             </div>
 
         </div>
