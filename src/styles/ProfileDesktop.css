@@ -74,11 +74,6 @@
     height: fit-content;
     min-width: 200px;
 }
-#education-awards-honors-container {
-    flex-direction: column;
-    overflow-y: auto;
-    gap: 12px;
-}
 .education-list {
     gap: 4px;
 }

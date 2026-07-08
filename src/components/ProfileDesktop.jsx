@@ -3,6 +3,7 @@ import '../styles/ProfileDesktop.css';
 import { useTheme } from './Theme.jsx';
 import { useSoundFX } from './useSoundFX.jsx';
 import { motion, AnimatePresence } from 'motion/react';
+import Window from '../components/Window.jsx';
 
 import { FolderIcon } from '@heroicons/react/24/outline';
 import { FolderClosed } from 'lucide-react';
@@ -32,18 +33,48 @@ export default function ProfileDesktop() {
   };
 
   const folders = [
-    { id: 1, name: 'about', type: 'file' },
-    { id: 2, name: 'education-awards-honors', type: 'file' },
-    { id: 3, name: 'tools', type: 'file' },
-    { id: 4, name: 'interests', type: 'file' },
-    { id: 5, name: 'contact-socials', type: 'folder' },
+    { 
+      id: 1, 
+      name: 'about', 
+      type: 'file', 
+      defaultPosition: { top: '5%', left: '10%' }, 
+      defaultSize: { width: '516px', height: '260px' } 
+    },
+    { 
+      id: 2, 
+      name: 'education-awards-honors', 
+      type: 'file', 
+      defaultPosition: { top: '12%', left: '65%' }, 
+      defaultSize: { width: '388px', height: '360px' } 
+    },
+    { 
+      id: 3, 
+      name: 'tools', 
+      type: 'file', 
+      defaultPosition: { top: '22%', left: '42%' }, 
+      defaultSize: { width: '270px', height: '386px' } 
+    },
+    { 
+      id: 4, 
+      name: 'interests', 
+      type: 'file', 
+      defaultPosition: { top: '45%', left: '7%' }, 
+      defaultSize: { width: '460px', height: '240px' } 
+    },
+    { 
+      id: 5, 
+      name: 'contact-socials', 
+      type: 'folder', 
+      defaultPosition: { top: '65%', left: '60%' }, 
+      defaultSize: { width: '442px', height: '160px' } 
+    },
   ];
 
   const [openFolders, setOpenFolders] = React.useState([]);
 
-  const openFolder = (folderName) => {
-    if (!openFolders.includes(folderName)) {
-      setOpenFolders((prev) => [...prev, folderName]);
+  const openFolder = (folder) => {
+    if (!openFolders.some((f) => f.name === folder.name)) {
+      setOpenFolders((prev) => [...prev, folder]);
       sounds.playClick();
     }
   };
@@ -64,7 +95,7 @@ export default function ProfileDesktop() {
             className='hover-container'
             key={folder.id}
             onClick={() => {
-              openFolder(folder.name);
+              openFolder(folder);
             }}
           >
             {folder.type === 'file' ? (
@@ -78,40 +109,28 @@ export default function ProfileDesktop() {
       </div>
 
       <div className='window-container'>
-        {openFolders.map((folderName, index) => {
-          const SelectedContent = folderContents[folderName];
+      <AnimatePresence>
+        {openFolders.map((folder) => {
+          const SelectedContent = folderContents[folder.name];
 
           return (
-            <AnimatePresence>
-              <motion.div
-                className='window'
-                id={`${folderName}-window`}
-                key={index}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1 }}
-                exit={{ opacity: 0, scale: 0 }}
-              >
-                <div className="window-title">
-                  <p>{folderName}</p>
-                  <div
-                    className="window-btn"
-                    onClick={() => {
-                      closeFolder(folderName);
-                      sounds.playClick();
-                    }}
-                  >
-                    <XMarkIcon width={14} height={14} strokeWidth={2} />
-                  </div>
-                </div>
-                <div className='window-contents p-20'>
-                  <div className='scroll-container' id={`${folderName}-container`}>
-                    <SelectedContent />
-                  </div>
-                </div>
-              </motion.div>
-            </AnimatePresence>
+            <Window 
+              key={folder.name}
+              id={folder.id}
+              // windowId={`${folder.name}-window`}
+              title={folder.name}
+              onClose={() => {
+                closeFolder(folder.name);
+                sounds.playClick();
+              }}
+              defaultPosition={folder.defaultPosition}
+              defaultSize={folder.defaultSize}
+            >
+              <SelectedContent />
+            </Window>
           );
         })}
+        </AnimatePresence>
       </div>
     </div>
   );
@@ -163,6 +182,7 @@ function EducationContents() {
   ];
   return (
     <>
+    <div className='flex flex-column g-16'>
       {educationList.map((list, index) => (
         <div className='education-list' key={index}>
           <h2>{list.name}</h2>
@@ -173,6 +193,7 @@ function EducationContents() {
           </p>
         </div>
       ))}
+    </div>
     </>
   );
 }
@@ -187,18 +208,20 @@ function ToolsContents() {
 
   return (
     <>
+    <div className='flex flex-column g-16'>
       {toolList.map((category, index) => (
         <div className='toolList-category' key={index}>
           <h2>{category.category}</h2>
           <div className='toolList-tools-container' key={index}>
             {category.tools.map((tool, index) => (
-              <div className='toolList-tools'>
+              <div className='toolList-tools' key={index}>
                 <p>{tool}</p>
               </div>
             ))}
           </div>
         </div>
       ))}
+    </div>
     </>
   );
 }
