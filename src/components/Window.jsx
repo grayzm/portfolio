@@ -114,7 +114,7 @@ export default function Window({
             }}
         >
             <div 
-                className='window-title' 
+                className='window-title-border' 
                 onPointerDown={handleDragStart}
                 style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
             >

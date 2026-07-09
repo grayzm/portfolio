@@ -101,7 +101,7 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
             >
-                <div className={`project-container ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
+                <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (
                         <div className='info-panel'>
                             <div className='scroll-container flex-column g-16'>

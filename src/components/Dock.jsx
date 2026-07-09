@@ -9,8 +9,6 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
   const lockedDesktop = desktopList.find(desktop => desktop.isLocked)
   const LockedIcon = lockedDesktop?.icon;
 
-//   console.log(`${lockedDesktop?.name}`)
-
   return (
     <div className="dock">
       <div className="navigation-stack">

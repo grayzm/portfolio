@@ -17,6 +17,9 @@
   flex-wrap: wrap;
 }
 
+.p-4 {
+  padding: 4px;
+}
 .p-10 {
   padding: 10px;
 }
@@ -51,6 +54,19 @@
 .full {
   width: 100%;
   height: 100%;
+}
+
+/* =================================== COLORS */
+.title-bg {
+  background: var(--dock-bg);
+}
+.text-bg {
+  background: var(--text-bg);
+}
+
+/* =================================== DECORATIONS */
+.border {
+  border: solid 1px var(--border);
 }
 
 .app-container {
@@ -109,8 +125,8 @@
   z-index: 10;
   right: 0;
   bottom: 0;
-  width: 16px;
-  height: 16px;
+  width: 10px;
+  height: 10px;
   cursor: nwse-resize;
   background: var(--text);
 }
@@ -127,6 +143,20 @@
 
   background: var(--dock-bg);
   border-bottom: solid 1px var(--border);
+}
+.window-title-border {
+  display: flex;
+  width: 100%;
+  height: fit-content;
+
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 2px 8px;
+  padding-top: 6px;
+
+  background: var(--dock-bg);
+  /* color: black; */
 }
 
 .window-btn-container {

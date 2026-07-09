@@ -137,8 +137,8 @@ export default function ProfileDesktop() {
 
 function AboutContents() {
   return (
-    <div className='full p-20 hidden'>
-      <div className='scroll-container flex-column g-10'>
+    <div className='full p-4 hidden title-bg'>
+      <div className='scroll-container flex-column g-10 p-10 text-bg border'>
         <h1>Graciella Michelle S</h1>
         <p>
           My creative journey began in fashion design before expanding into app
@@ -180,8 +180,8 @@ function EducationContents() {
     },
   ];
   return (
-    <div className='full p-20 hidden'>
-      <div className='scroll-container flex-column g-16'>
+    <div className='full p-4 hidden title-bg'>
+      <div className='scroll-container flex-column g-16 p-10 text-bg border'>
         {educationList.map((list, index) => (
           <div className='flex-column g-4' key={index}>
             <h2>{list.name}</h2>
@@ -206,8 +206,8 @@ function ToolsContents() {
   ];
 
   return (
-    <div className='full p-20 hidden'>
-      <div className='scroll-container flex-column g-16'>
+    <div className='full p-4 hidden title-bg'>
+      <div className='scroll-container flex-column g-16 p-10 text-bg border'>
         {toolList.map((category, index) => (
           <div className='flex-column g-4' key={index}>
             <h2>{category.category}</h2>
@@ -227,8 +227,8 @@ function ToolsContents() {
 
 function InterestsContents() {
   return (
-    <div className='full p-20 hidden'>
-      <div className='scroll-container'>
+    <div className='full p-4 hidden title-bg'>
+      <div className='scroll-container p-10 text-bg border'>
         <p>
           <strong>Music</strong> has always been something I hold dear. I always
           find myself playing the piano and whenever I feel emotional. I've only
@@ -258,8 +258,8 @@ function ContactContents() {
   ];
 
   return (
-    <div className='full p-20 hidden flex'>
-      <div className='scroll-container-x'>
+    <div className='full p-4 hidden flex title-bg'>
+      <div className='scroll-container-x p-10 text-bg border'>
         {socialsList.map((item, index) => (
           <div className='socials-list' key={index} onClick={() => sounds.playClick()}>
             <a href={item.link}>

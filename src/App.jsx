@@ -15,8 +15,8 @@ import ProjectsDesktop from './components/ProjectsDesktop'
 function App() {
 
   const desktops = [
-    { name: 'projects', icon: BriefcaseBusiness, isActive: false, isLocked: false },
     { name: 'about', icon: IdCard, isActive: false, isLocked: false },
+    { name: 'projects', icon: BriefcaseBusiness, isActive: false, isLocked: false },
     { name: 'playground', icon: Gamepad2, isActive: false, isLocked: false },
     { name: 'documentations', icon: LibraryBig, isActive: false, isLocked: false },
     { name: 'locked', icon: Lock, isActive: false, isLocked: true}
