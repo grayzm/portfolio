@@ -2,14 +2,16 @@ import React from 'react';
 import { motion } from 'motion/react';
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
+let globalZIndex = 5;
+
 export default function Window({ 
     id, 
-    // windowId, 
     title, 
     children, 
     onClose, 
     defaultPosition = { top: '10%', left: '10%' }, 
-    defaultSize = { width: 400, height: 300 } 
+    defaultSize = { width: 400, height: 300 },
+    windowButtons
 }) {
     const windowRef = React.useRef(null);
 
@@ -23,6 +25,12 @@ export default function Window({
     });
     const [isResizing, setIsResizing] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
+
+    const [localZIndex, setLocalZIndex] = React.useState(globalZIndex);
+    const bringToFront = () => {
+        globalZIndex += 1;
+        setLocalZIndex(globalZIndex);
+    }
 
     const handleDragStart = (e) => {
         if (e.target.closest('.window-btn')) return;
@@ -63,8 +71,8 @@ export default function Window({
         e.stopPropagation();
         setIsResizing(true);
 
-        const startWidth = parseInt(size.width, 10) || 400;
-        const startHeight = parseInt(size.height, 10) || 300;
+        const startWidth = windowRef.current.offsetWidth;
+        const startHeight = windowRef.current.offsetHeight;
         const startX = e.clientX;
         const startY = e.clientY;
 
@@ -92,7 +100,7 @@ export default function Window({
         <motion.div
             ref={windowRef}
             className='window'
-            // id={windowId}
+            onPointerDown={bringToFront}
             initial={{ opacity: 0, scale: 0.95 }}
             animate={{ opacity: 1, scale: 1 }}
             exit={{ opacity: 0, scale: 0.9 }}
@@ -102,6 +110,7 @@ export default function Window({
                 left: position.left,
                 width: size.width, 
                 height: size.height, 
+                zIndex: localZIndex,
             }}
         >
             <div 
@@ -110,11 +119,14 @@ export default function Window({
                 style={{ cursor: isDragging ? 'grabbing' : 'grab' }}
             >
                 <p>{title}</p>
-                <div className='window-btn' onClick={onClose}>
-                    <XMarkIcon width={14} height={14} strokeWidth={2} />
+                <div className='window-btn-container'>
+                    {windowButtons}
+                    <div className='window-btn' onClick={onClose}>
+                        <XMarkIcon width={14} height={14} strokeWidth={2} />
+                    </div>
                 </div>
             </div>
-            <div className='window-contents p-20'>
+            <div className='window-contents'>
                 <div className='scroll-container'>
                     {children}
                 </div>

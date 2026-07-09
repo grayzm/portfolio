@@ -2,6 +2,7 @@ import React from 'react';
 import '../../styles/Projects.css';
 import { useSoundFX } from '../useSoundFX';
 import { motion } from 'motion/react';
+import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
 
@@ -12,66 +13,55 @@ import practiceBts from '../../assets/visuals/randrum/practice-bts.webp';
 import createBts from '../../assets/visuals/randrum/create-bts.webp';
 import demoVid from '../../assets/visuals/randrum/demo.mp4';
 
-export default function Randrum({ folderName, key, closeFolder }) {
+export default function Randrum({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
     const sounds = useSoundFX();
 
     const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
 
     const [infoPanelIsActive, setInfoPanelIsActive] = React.useState(true);
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);
-    const [productIsActive, setProductIsActive] = React.useState(true);
-    const [processIsActive, setProcessIsActive] = React.useState(false);
     const [activeDocumentations, setActiveDocumentations] = React.useState('product');
 
     const documentations = ['product', 'process'];
 
+    const extraWindowButtons = (
+        <>
+            <div 
+                className='window-btn' 
+                id='info-panel-btn'
+                onClick={() => {
+                    setInfoPanelIsActive(!infoPanelIsActive);
+                    sounds.playClick();
+                }}
+            >
+                    <div className={`info-panel-fill ${infoPanelIsActive ? 'active' : ''}`}></div>
+            </div>
+            <div 
+                className='window-btn' 
+                id='log-panel-btn'
+                onClick={() => {
+                    setLogPanelIsActvie(!logPanelIsActive);
+                    sounds.playClick();
+                }}
+            >
+                <div className={`log-panel-fill ${logPanelIsActive ? 'active' : ''}`}></div>
+            </div>
+        </>
+    )
+
     return (
         <>
-            <motion.div
-                className='window'
-                id={`${folderName}-window`}
-                key={key}
-                initial={{ opacity: 0, scale: 0.5 }}
-                animate={{ opacity: 1, scale: 1}}
-                exit={{ opacity: 0, scale: 0 }}
+            <Window
+                title={folderName}
+                onClose={() => {
+                    closeFolder(folderName);
+                    sounds.playClick();
+                }}
+                windowButtons={extraWindowButtons}
+                defaultPosition={defaultPosition}
+                defaultSize={defaultSize}
             >
-                <div className='window-title'>
-                    <p>{folderName}</p>
-                    <div className='window-btn-container'>
-                        <div 
-                            className='window-btn' 
-                            id='info-panel-btn'
-                            onClick={() => {
-                                setInfoPanelIsActive(!infoPanelIsActive);
-                                sounds.playClick();
-                            }}
-                        >
-                                <div className={`info-panel-fill ${infoPanelIsActive ? 'active' : ''}`}></div>
-                        </div>
-                        <div 
-                            className='window-btn' 
-                            id='log-panel-btn'
-                            onClick={() => {
-                                setLogPanelIsActvie(!logPanelIsActive);
-                                sounds.playClick();
-                            }}
-                        >
-                            <div className={`log-panel-fill ${logPanelIsActive ? 'active' : ''}`}></div>
-                        </div>
-                        <div
-                            className='window-btn'
-                            id="close-btn"
-                            onClick={() => {
-                            closeFolder(folderName);
-                            sounds.playClick();
-                            }}
-                        >
-                            <XMarkIcon width={14} height={14} strokeWidth={2} />
-                        </div>
-                    </div>
-                </div>
-                <div className='window-contents p-10'>
-                    <div className={`project-container ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
+                <div className={`project-container ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                         {infoPanelIsActive && (
                             <div className='info-panel'>
                                 <div className='scroll-container flex-column g-16'>
@@ -163,7 +153,7 @@ export default function Randrum({ folderName, key, closeFolder }) {
 
                             {logPanelIsActive && (
                                 <div className='log-panel'>
-                                    <div className='window-title'><p>development log</p></div>
+                                    <div className='window-title' style={{ padding: '6px 8px'}}><p>development log</p></div>
                                     <div className='log-contents'>
                                         <div className='scroll-container'>
                                             <p className='text-m'>
@@ -177,8 +167,7 @@ export default function Randrum({ folderName, key, closeFolder }) {
                             )}
                         </div>
                     </div>
-                </div>
-            </motion.div>
+            </Window>
         </>
     )
 }

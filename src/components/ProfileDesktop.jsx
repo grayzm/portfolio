@@ -80,7 +80,7 @@ export default function ProfileDesktop() {
   };
 
   const closeFolder = (folderName) => {
-    setOpenFolders((prev) => prev.filter((name) => name !== folderName));
+    setOpenFolders((prev) => prev.filter((folder) => folder.name !== folderName));
   };
 
   React.useEffect(() => {
@@ -117,7 +117,6 @@ export default function ProfileDesktop() {
             <Window 
               key={folder.name}
               id={folder.id}
-              // windowId={`${folder.name}-window`}
               title={folder.name}
               onClose={() => {
                 closeFolder(folder.name);
@@ -138,8 +137,8 @@ export default function ProfileDesktop() {
 
 function AboutContents() {
   return (
-    <>
-      <div className='about-name-desc'>
+    <div className='full p-20 hidden'>
+      <div className='scroll-container flex-column g-10'>
         <h1>Graciella Michelle S</h1>
         <p>
           My creative journey began in fashion design before expanding into app
@@ -153,7 +152,7 @@ function AboutContents() {
           intentional that leaves a lasting impression.
         </p>
       </div>
-    </>
+    </div>
   );
 }
 
@@ -181,20 +180,20 @@ function EducationContents() {
     },
   ];
   return (
-    <>
-    <div className='flex flex-column g-16'>
-      {educationList.map((list, index) => (
-        <div className='education-list' key={index}>
-          <h2>{list.name}</h2>
-          <p>
-            {list.year}
-            <br></br>
-            {list.desc}
-          </p>
-        </div>
-      ))}
+    <div className='full p-20 hidden'>
+      <div className='scroll-container flex-column g-16'>
+        {educationList.map((list, index) => (
+          <div className='flex-column g-4' key={index}>
+            <h2>{list.name}</h2>
+            <p>
+              {list.year}
+              <br></br>
+              {list.desc}
+            </p>
+          </div>
+        ))}
+      </div>
     </div>
-    </>
   );
 }
 
@@ -207,41 +206,43 @@ function ToolsContents() {
   ];
 
   return (
-    <>
-    <div className='flex flex-column g-16'>
-      {toolList.map((category, index) => (
-        <div className='toolList-category' key={index}>
-          <h2>{category.category}</h2>
-          <div className='toolList-tools-container' key={index}>
-            {category.tools.map((tool, index) => (
-              <div className='toolList-tools' key={index}>
-                <p>{tool}</p>
-              </div>
-            ))}
+    <div className='full p-20 hidden'>
+      <div className='scroll-container flex-column g-16'>
+        {toolList.map((category, index) => (
+          <div className='flex-column g-4' key={index}>
+            <h2>{category.category}</h2>
+            <div className='flex wrap g-6' key={index}>
+              {category.tools.map((tool, index) => (
+                <div className='toolList-tools' key={index}>
+                  <p>{tool}</p>
+                </div>
+              ))}
+            </div>
           </div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
-    </>
   );
 }
 
 function InterestsContents() {
   return (
-    <>
-      <p>
-        <strong>Music</strong> has always been something I hold dear. I always
-        find myself playing the piano and whenever I feel emotional. I've only
-        recently started exploring DAWs, but you can find me here.
-        <br></br>
-        <br></br>I wouldn't say I'm obsessed, but my gallery is quite filled
-        with <strong>photos</strong> of the sky, mainly the moon. You can view
-        the photos in my gallery.
-        <br></br>
-        <br></br>Other than that, I enjoy playing <strong>games</strong> with my
-        close friends on the weekends :)
-      </p>
-    </>
+    <div className='full p-20 hidden'>
+      <div className='scroll-container'>
+        <p>
+          <strong>Music</strong> has always been something I hold dear. I always
+          find myself playing the piano and whenever I feel emotional. I've only
+          recently started exploring DAWs, but you can find me here.
+          <br></br>
+          <br></br>I wouldn't say I'm obsessed, but my gallery is quite filled
+          with <strong>photos</strong> of the sky, mainly the moon. You can view
+          the photos in my gallery.
+          <br></br>
+          <br></br>Other than that, I enjoy playing <strong>games</strong> with my
+          close friends on the weekends :)
+        </p>
+      </div>
+    </div>
   );
 }
 
@@ -257,18 +258,20 @@ function ContactContents() {
   ];
 
   return (
-    <>
-      {socialsList.map((item, index) => (
-        <div className='socials-list' key={index} onClick={() => sounds.playClick()}>
-          <a href={item.link}>
-            <img
-              src={theme === 'dark' ? item.imgDark : item.imgLight}
-              alt={item.imgLight}
-            ></img>
-          </a>
-          <p>{item.name}</p>
-        </div>
-      ))}
-    </>
+    <div className='full p-20 hidden flex'>
+      <div className='scroll-container-x'>
+        {socialsList.map((item, index) => (
+          <div className='socials-list' key={index} onClick={() => sounds.playClick()}>
+            <a href={item.link}>
+              <img
+                src={theme === 'dark' ? item.imgDark : item.imgLight}
+                alt={item.imgLight}
+              ></img>
+            </a>
+            <p>{item.name}</p>
+          </div>
+        ))}
+      </div>
+    </div>
   );
 }

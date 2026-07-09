@@ -39,20 +39,26 @@ export default function ProjectsDesktop() {
             type: 'app', 
             iconType: 'img', 
             icon: randrumIcon, 
+            defaultPosition: { top: '3%', left: '5%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
             id: 2, 
             name: 'soon', 
             type: 'game', 
             iconType: 'img', 
-            icon: soonIcon, 
+            icon: soonIcon,
+            defaultPosition: { top: '5%', left: '8%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
             id: 3, 
             name: 'ubook', 
             type: 'app', 
             iconType: 'img', 
-            icon: ubookIcon, 
+            icon: ubookIcon,
+            defaultPosition: { top: '8%', left: '6%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
             id: 4, 
@@ -60,6 +66,8 @@ export default function ProjectsDesktop() {
             type: 'game', 
             iconType: 'img', 
             icon: streetSwipeIcon, 
+            defaultPosition: { top: '4%', left: '10%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
             id: 5, 
@@ -67,6 +75,8 @@ export default function ProjectsDesktop() {
             type: 'game', 
             iconType: 'img', 
             icon: birdboxIcon, 
+            defaultPosition: { top: '6%', left: '12%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
             id: 6, 
@@ -74,6 +84,8 @@ export default function ProjectsDesktop() {
             type: 'app', 
             iconType: 'img', 
             icon: rhysleepIcon, 
+            defaultPosition: { top: '7%', left: '9%' },
+            defaultSize: { width: '80vw', height: '80vh' },
         },
         // { id: 7, name: 'personal-website', type: 'web', iconType: 'code', icon: FileCode },
     ]
@@ -121,13 +133,20 @@ export default function ProjectsDesktop() {
 
             <div className='window-container'>
                 <AnimatePresence>
-                    {openFolders.map(({ name, id }) => {
-                        const SelectedContent = folderContents[name];
+                    {openFolders.map((folder) => {
+                        const SelectedContent = folderContents[folder.name];
 
                         if (!SelectedContent) return null;
 
                         return (
-                            <SelectedContent folderName={name} key={id} folderid={id} closeFolder={closeFolder}/>
+                            <SelectedContent 
+                                key={folder.id} 
+                                folderid={folder.id} 
+                                folderName={folder.name} 
+                                closeFolder={closeFolder}
+                                defaultPosition={folder.defaultPosition}
+                                defaultSize={folder.defaultSize}
+                            />
                         )
                     })}
                 </AnimatePresence>

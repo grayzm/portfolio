@@ -9,10 +9,12 @@
 }
 
 .flex-column {
+  display: flex;
   flex-direction: column;
 }
-#flex-column {
-  flex-direction: column;
+
+.wrap {
+  flex-wrap: wrap;
 }
 
 .p-10 {
@@ -24,6 +26,9 @@
 
 .g-4 {
   gap: 4px;
+}
+.g-6 {
+  gap: 6px;
 }
 .g-10 {
   gap: 10px;
@@ -37,6 +42,15 @@
 }
 .text-m {
   font-size: 12px;
+}
+
+.hidden {
+  overflow: hidden;
+}
+
+.full {
+  width: 100%;
+  height: 100%;
 }
 
 .app-container {
