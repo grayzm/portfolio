@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 import landing from '../../assets/visuals/ubook/product/landing.webp';
 import schedule from '../../assets/visuals/ubook/product/schedule.webp';
@@ -79,6 +80,17 @@ export default function UBook({ folderName, key, closeFolder, defaultPosition, d
                                     <h1>UBook</h1>
                                     <p className='text-m'>iOS application, ADA real client project</p>
                                 </div>
+                                <a href='https://www.figma.com/design/fx0HGA5T8vklPZdjy4Jxpz/UBook?node-id=0-1&p=f&t=k4b6p6WEx0hGNbSi-0' target='_blank' style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                                    <button  
+                                        style={{ marginBottom: '8px' }}
+                                        onClick={() => {
+                                            sounds.playClick();
+                                        }}
+                                    >
+                                        <p>Figma</p>
+                                        <SquareArrowOutUpRight style={{ width: '12px', height: '12px' }} />
+                                    </button>
+                                </a>
                                 <div className='flex flex-column g-4'>
                                     <h2>Contributions</h2>
                                     <div className='tools-container'>
@@ -134,7 +146,7 @@ export default function UBook({ folderName, key, closeFolder, defaultPosition, d
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>product</p></div>
@@ -143,7 +155,7 @@ export default function UBook({ folderName, key, closeFolder, defaultPosition, d
                                         onClick={() => {
                                             setActiveDocumentations('process');
                                             if (activeDocumentations !== 'process') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>process</p></div>

@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 import landing from '../../assets/visuals/rhysleep/product/landing.webp';
 import questionnaire from '../../assets/visuals/rhysleep/product/questionnaire.webp';
@@ -86,8 +87,19 @@ export default function Rhysleep({ folderName, key, closeFolder, defaultPosition
                             <div className='scroll-container flex-column g-16'>
                                 <div className='flex flex-column g-4'>
                                     <h1>Rhysleep</h1>
-                                    <p className='text-m'>iOS application</p>
+                                    <p className='text-m'>iOS application hi-fi prototype</p>
                                 </div>
+                                <a href='https://www.figma.com/design/FLxdtOCmW1EE2hLQhYgPbw/Rhysleep?node-id=138-1836&t=nFkjsnHXlYivcJe2-1' target='_blank' style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                                    <button  
+                                        style={{ marginBottom: '8px' }}
+                                        onClick={() => {
+                                            sounds.playClick();
+                                        }}
+                                    >
+                                        <p>Figma</p>
+                                        <SquareArrowOutUpRight style={{ width: '12px', height: '12px' }}/>
+                                    </button>
+                                </a>
                                 <div className='flex flex-column g-4'>
                                     <h2>Contributions</h2>
                                     <div className='tools-container'>
@@ -144,7 +156,7 @@ export default function Rhysleep({ folderName, key, closeFolder, defaultPosition
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>product</p></div>
@@ -153,7 +165,7 @@ export default function Rhysleep({ folderName, key, closeFolder, defaultPosition
                                         onClick={() => {
                                             setActiveDocumentations('process');
                                             if (activeDocumentations !== 'process') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>process</p></div>

@@ -6,7 +6,7 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
   const sounds = useSoundFX();
 
   const desktops = desktopList.filter(desktop => !desktop.isLocked);
-  const lockedDesktop = desktopList.find(desktop => desktop.isLocked)
+  const lockedDesktop = desktopList.find(desktop => desktop.name === '?');
   const LockedIcon = lockedDesktop?.icon;
 
   return (
@@ -15,30 +15,44 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
         {desktops.map((desktop, index) => {
             const isActive = activeDesktop === desktop.name;
             return (
+              <div className='flex g-6' style={{ alignItems: 'center' }}>
                 <div
-                    className="nav"
+                    className={`nav ${isActive ? 'active' : ''}`}
                     key={index}
                     onClick={() => {
-                        sounds.playClick();
+                        if (activeDesktop !== desktop.name) {
+                          sounds.playTok();
+                        }
                         setActiveDesktop(desktop.name);
                         console.log(`active desktop: ${activeDesktop}`);
                     }}
                 >
-                    <desktop.icon size={24} strokeWidth={1.3} />
+                    <desktop.icon strokeWidth={1.3} style={{ width: '24px', height: '24px' }} />
                 </div>
+                <div className='hover-overlay'>
+                  <p>{desktop.name}</p>
+                </div>
+              </div>
             )
         })}
       </div>
       {LockedIcon && (
-        <div 
-            className="nav" 
-            onClick={() => {
-                sounds.playClick();
+        <div className='flex g-6' style={{ alignItems: 'center'}}>
+          <div 
+              className={`nav ${activeDesktop === '?' ? 'active' : ''}`} 
+              onClick={() => {
+                if (activeDesktop !== '?') {
+                  sounds.playTok();
+                }
                 setActiveDesktop(lockedDesktop.name);
                 console.log(`active desktop: ${activeDesktop}`);
-            }}
-        >
-          <LockedIcon size={24} strokeWidth={1.3} />
+              }}
+          >
+            <LockedIcon size={24} strokeWidth={1.3} />
+          </div>
+          <div className='hover-overlay'>
+            <p>{lockedDesktop.name}</p>
+          </div>
         </div>
       )}
     </div>

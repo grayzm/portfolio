@@ -2,6 +2,7 @@ import React from 'react';
 import useSound from 'use-sound';
 import clickSfx from '../assets/sounds/click.mp3';
 import switchSfx from '../assets/sounds/light-switch.mp3';
+import tokSfx from '../assets/sounds/tok.mp3';
 
 export const useSoundFX = () => {
     const [playClick] = useSound(clickSfx, { 
@@ -12,6 +13,10 @@ export const useSoundFX = () => {
         volume: 0.5,
         interrupt: true,
     });
+    const [playTok] = useSound(tokSfx, {
+        volume: 1,
+        interrupt: true,
+    });
 
-    return { playClick, playSwitch };
+    return { playClick, playSwitch, playTok };
 };

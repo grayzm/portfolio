@@ -1,7 +1,7 @@
 .dock {
     background: var(--dock-bg);
     display: flex;
-    width: fit-content;
+    width: 56px;
     height: 100%;
 
     flex-direction: column;
@@ -22,6 +22,7 @@
     background: var(--text-bg);
     display: flex;
     aspect-ratio: 1 / 1;
+    width: fit-content;
 
     padding: 2px;
     align-items: center;
@@ -34,9 +35,31 @@
     cursor: pointer;
 }
 
-.nav:active {
+.nav.active {
     transform: 
         translateX(2.5px)
         translateY(2.5px);
     box-shadow: none;
+    background: none;
+}
+
+.hover-overlay {
+    position: relative;
+    z-index: 5;
+    width: fit-content;
+    height: fit-content;
+
+    padding: 4px 6px;
+    background: var(--text-bg);
+    border: solid 1px var(--border);
+    transform: translateY(1px);
+    transition: 
+        opacity 0.3s ease-in-out,
+        transform 0.3s ease-in-out;
+    opacity: 0;
+}
+
+.nav:hover + .hover-overlay {
+    opacity: 1;
+    transform: translateX(4px);
 }

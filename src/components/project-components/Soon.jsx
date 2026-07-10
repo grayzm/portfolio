@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 import landingVid from '../../assets/visuals/soon/product/landing-video.mp4';
 import lv1Vid from '../../assets/visuals/soon/product/lv1-video.mp4';
@@ -109,6 +110,17 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                                     <h1>Soon</h1>
                                     <p className='text-m'>Narrative wayfinding platformer game</p>
                                 </div>
+                                <a href='https://jazali.itch.io/soon' target='_blank' style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                                    <button  
+                                        style={{ marginBottom: '8px' }}
+                                        onClick={() => {
+                                            sounds.playClick();
+                                        }}
+                                    >
+                                        <p>Itch.io</p>
+                                        <SquareArrowOutUpRight style={{ width: '12px', height: '12px' }} />
+                                    </button>
+                                </a>
                                 <div className='flex flex-column g-4'>
                                     <h2>Contributions</h2>
                                     <div className='tools-container'>
@@ -181,7 +193,7 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     >
@@ -192,7 +204,7 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                                         onClick={() => {
                                             setActiveDocumentations('process');
                                             if (activeDocumentations !== 'process') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     >
@@ -203,7 +215,7 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                                         onClick={() => {
                                             setActiveDocumentations('tileset');
                                             if (activeDocumentations !== 'tileset') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     >

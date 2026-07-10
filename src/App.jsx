@@ -15,18 +15,18 @@ import ProjectsDesktop from './components/ProjectsDesktop'
 function App() {
 
   const desktops = [
-    { name: 'about', icon: IdCard, isActive: false, isLocked: false },
-    { name: 'projects', icon: BriefcaseBusiness, isActive: false, isLocked: false },
-    { name: 'playground', icon: Gamepad2, isActive: false, isLocked: false },
-    { name: 'documentations', icon: LibraryBig, isActive: false, isLocked: false },
-    { name: 'locked', icon: Lock, isActive: false, isLocked: true}
+    { name: 'about', icon: IdCard, isLocked: false },
+    { name: 'projects', icon: BriefcaseBusiness, isLocked: false },
+    { name: 'playground', icon: Gamepad2, isLocked: false },
+    { name: 'documentations', icon: LibraryBig, isLocked: false },
+    { name: '?', icon: Lock, isLocked: true}
   ];
 
   const desktopComponents = {
-    projects: <ProjectsDesktop />,
     about: <ProfileDesktop />,
+    projects: <ProjectsDesktop />,
   }
-  const [activeDesktop, setActiveDesktop] = React.useState('ProfileDesktop');
+  const [activeDesktop, setActiveDesktop] = React.useState('about');
 
   return (
     <div className='app-container'>

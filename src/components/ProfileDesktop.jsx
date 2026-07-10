@@ -70,7 +70,15 @@ export default function ProfileDesktop() {
     },
   ];
 
-  const [openFolders, setOpenFolders] = React.useState([]);
+  const [openFolders, setOpenFolders] = React.useState([
+    { 
+      id: 1, 
+      name: 'about', 
+      type: 'file', 
+      defaultPosition: { top: '5%', left: '10%' }, 
+      defaultSize: { width: '516px', height: '260px' } 
+    },
+  ]);
 
   const openFolder = (folder) => {
     if (!openFolders.some((f) => f.name === folder.name)) {
@@ -144,7 +152,7 @@ function AboutContents() {
           My creative journey began in fashion design before expanding into app
           development and UI/UX design. Along the way, I discovered game
           development, which sparked a growing interest in creating interactive
-          experiences and eventually led me to front-end development.
+          experiences and eventually led me to frontend development.
           <br></br>
           <br></br>Today, I aspire to become a designer-developer hybrid who can
           shape both the vision and implementation of digital products. I enjoy
@@ -200,7 +208,7 @@ function EducationContents() {
 function ToolsContents() {
   const toolList = [
     { category: 'Design', tools: ['Figma', 'Framer', 'AI', 'PS', 'Fresco'] },
-    { category: 'Front-end', tools: ['SwiftUI', 'HTML', 'CSS', 'JS', 'React'] },
+    { category: 'Frontend', tools: ['SwiftUI', 'HTML', 'CSS', 'JS', 'React'] },
     { category: 'Game', tools: ['Blender', 'Aseprite', 'Unity', 'Logic Pro'] },
     { category: 'Development', tools: ['Git', 'GitHub', 'VS Code', 'Xcode'] },
   ];

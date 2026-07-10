@@ -132,7 +132,7 @@ export default function StreetSwipe({ folderName, key, closeFolder, defaultPosit
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>product</p></div>
@@ -141,7 +141,7 @@ export default function StreetSwipe({ folderName, key, closeFolder, defaultPosit
                                         onClick={() => {
                                             setActiveDocumentations('assets');
                                             if (activeDocumentations !== 'assets') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>assets</p></div>

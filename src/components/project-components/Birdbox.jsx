@@ -141,7 +141,7 @@ export default function Birdbox({ folderName, key, closeFolder, defaultPosition,
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>product</p></div>
@@ -150,7 +150,7 @@ export default function Birdbox({ folderName, key, closeFolder, defaultPosition,
                                         onClick={() => {
                                             setActiveDocumentations('assets');
                                             if (activeDocumentations !== 'assets') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>assets</p></div>

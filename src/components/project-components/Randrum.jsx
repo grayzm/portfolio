@@ -5,6 +5,7 @@ import { motion } from 'motion/react';
 import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';
+import { SquareArrowOutUpRight } from 'lucide-react';
 
 import landingView from '../../assets/visuals/randrum/landing-dark.webp';
 import practiceView from '../../assets/visuals/randrum/practice-sample-dark.webp';
@@ -69,6 +70,17 @@ export default function Randrum({ folderName, key, closeFolder, defaultPosition,
                                     <h1>Randrum</h1>
                                     <p className='text-m'>iPadOS application, Swift Student Challenge 2026 submission</p>
                                 </div>
+                                <a href='https://github.com/grayzm/Randrum' target='_blank' style={{ textDecoration: 'none', color: 'var(--text)' }}>
+                                    <button  
+                                        style={{ marginBottom: '8px' }}
+                                        onClick={() => {
+                                            sounds.playClick();
+                                        }}
+                                    >
+                                        <p>GitHub</p>
+                                        <SquareArrowOutUpRight style={{ width: '12px', height: '12px' }} />
+                                    </button>
+                                </a>
                                 <div className='flex flex-column g-4'>
                                     <h2>Tools</h2>
                                     <div className='tools-container'>
@@ -112,7 +124,7 @@ export default function Randrum({ folderName, key, closeFolder, defaultPosition,
                                         onClick={() => {
                                             setActiveDocumentations('product');
                                             if (activeDocumentations !== 'product') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>product</p></div>
@@ -121,7 +133,7 @@ export default function Randrum({ folderName, key, closeFolder, defaultPosition,
                                         onClick={() => {
                                             setActiveDocumentations('process');
                                             if (activeDocumentations !== 'process') {
-                                                sounds.playSwitch();
+                                                sounds.playTok();
                                             }
                                         }}
                                     ><p style={{ fontSize: '10px'}}>process</p></div>
