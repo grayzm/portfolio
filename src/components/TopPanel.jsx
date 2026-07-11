@@ -2,7 +2,7 @@ import React from "react";
 import "../styles/TopPanel.css";
 import { useTheme } from "./Theme.jsx";
 import { useSoundFX } from "./useSoundFX.jsx";
-import { useClickOutside } from "./UseClickOutside.js";
+import { useClickOutside } from "./useClickOutside.js";
 
 import { MoonIcon as MoonIconOutlined } from "@heroicons/react/24/outline";
 import { SunIcon as SunIconOutlined } from "@heroicons/react/24/outline";
