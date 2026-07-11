@@ -45,7 +45,7 @@ export default function ProfileDesktop() {
       name: 'education-awards-honors', 
       type: 'file', 
       defaultPosition: { top: '12%', left: '65%' }, 
-      defaultSize: { width: '388px', height: '360px' } 
+      defaultSize: { width: '360px', height: '360px' } 
     },
     { 
       id: 3, 
@@ -77,6 +77,13 @@ export default function ProfileDesktop() {
       type: 'file', 
       defaultPosition: { top: '5%', left: '10%' }, 
       defaultSize: { width: '516px', height: '260px' } 
+    },
+    { 
+      id: 5, 
+      name: 'contact-socials', 
+      type: 'folder', 
+      defaultPosition: { top: '65%', left: '60%' }, 
+      defaultSize: { width: '442px', height: '160px' } 
     },
   ]);
 

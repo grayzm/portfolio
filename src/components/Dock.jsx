@@ -6,7 +6,7 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
   const sounds = useSoundFX();
 
   const desktops = desktopList.filter(desktop => !desktop.isLocked);
-  const lockedDesktop = desktopList.find(desktop => desktop.name === '?');
+  const lockedDesktop = desktopList.find(desktop => desktop.name === 'locked');
   const LockedIcon = lockedDesktop?.icon;
 
   return (
@@ -39,9 +39,9 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
       {LockedIcon && (
         <div className='flex g-6' style={{ alignItems: 'center'}}>
           <div 
-              className={`nav ${activeDesktop === '?' ? 'active' : ''}`} 
+              className={`nav ${activeDesktop === 'locked' ? 'active' : ''}`} 
               onClick={() => {
-                if (activeDesktop !== '?') {
+                if (activeDesktop !== 'locked') {
                   sounds.playTok();
                 }
                 setActiveDesktop(lockedDesktop.name);
@@ -51,7 +51,7 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
             <LockedIcon size={24} strokeWidth={1.3} />
           </div>
           <div className='hover-overlay'>
-            <p>{lockedDesktop.name}</p>
+            <p>?</p>
           </div>
         </div>
       )}

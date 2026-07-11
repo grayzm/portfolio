@@ -3,14 +3,17 @@ import './App.css'
 import { ThemeProvider } from './components/Theme'
 import TopPanel from './components/TopPanel'
 import Dock from './components/Dock'
-import ProfileDesktop from './components/ProfileDesktop'
 
 import { IdCard } from "lucide-react";
 import { BriefcaseBusiness } from "lucide-react";
 import { Gamepad2 } from "lucide-react";
 import { LibraryBig } from "lucide-react";
 import { Lock } from "lucide-react";
-import ProjectsDesktop from './components/ProjectsDesktop'
+
+import ProfileDesktop from './components/ProfileDesktop.jsx'
+import ProjectsDesktop from './components/ProjectsDesktop.jsx'
+import Locked from './components/Locked.jsx';
+import UnderConstruction from './components/UnderConstruction.jsx'
 
 function App() {
 
@@ -19,12 +22,13 @@ function App() {
     { name: 'projects', icon: BriefcaseBusiness, isLocked: false },
     { name: 'playground', icon: Gamepad2, isLocked: false },
     { name: 'documentations', icon: LibraryBig, isLocked: false },
-    { name: '?', icon: Lock, isLocked: true}
+    { name: 'locked', icon: Lock, isLocked: true}
   ];
 
   const desktopComponents = {
     about: <ProfileDesktop />,
     projects: <ProjectsDesktop />,
+    locked: <Locked />,
   }
   const [activeDesktop, setActiveDesktop] = React.useState('about');
 
@@ -39,7 +43,7 @@ function App() {
             setActiveDesktop={setActiveDesktop}
           />
           <div className='desktop-container'>
-            {desktopComponents[activeDesktop] || <ProjectsDesktop />}
+            {desktopComponents[activeDesktop] || <UnderConstruction />}
           </div>
         </div>
       </ThemeProvider>

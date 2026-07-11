@@ -166,7 +166,7 @@ export default function StreetSwipe({ folderName, key, closeFolder, defaultPosit
                                         <div className='product-img' style={{ backgroundImage: `url(${skin})`, aspectRatio: '653/898' }}></div>
                                         <div className='product-img' style={{ backgroundImage: `url(${obstacle})`, aspectRatio: '503/898' }}></div>
                                         <div className='product-img' style={{ backgroundImage: `url(${environment})`, aspectRatio: '1517/1000' }}></div>
-                                        <div className='product-img' style={{ backgroundImage: `url(${ui})`, aspectRatio: '564/358' }}></div>
+                                        <div className='product-img' style={{ backgroundImage: `url(${ui})`, aspectRatio: '1087/890' }}></div>
                                         <div className='video-container' style={{ aspectRatio: '1006/882'}}>
                                             <video autoPlay loop muted playsInline className='video-demo' style={{ aspectRatio: '1006/882'}}>
                                                 <source src={animations} type='video/mp4'></source>

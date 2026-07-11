@@ -1,0 +1,41 @@
+.code-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    padding: 40px;
+    border: double var(--border);
+}
+
+.code-container.incorrect {
+    border-color: red;
+    color: red;
+}
+
+.code-input {
+    width: 56px;
+    height: 56px;
+
+    font-size: 24px;
+    font-weight: 700;
+    text-align: center;
+
+    border: 1px solid var(--border);
+    background: var(--text-bg);
+    color: var(--text);
+    outline: none;
+    transition: all 0.15s ease-in-out;
+}
+
+.code-input.incorrect {
+    animation: errorShake 0.2s ease-in-out;
+    border-color: red;
+    color: red;
+}
+
+@keyframes errorShake {
+    0%, 100% { transform: translateX(0); }
+    20%, 60% { transform: translateX(-6px); }
+    80%, 100% { transform: translateX(6px); }
+}

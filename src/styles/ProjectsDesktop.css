@@ -36,7 +36,7 @@
     width: 56px;
     margin-top: 4px;
     image-rendering: pixelated;
-    filter: grayscale(90%);
+    /* filter: grayscale(90%); */
 }
 
 .hover-container p {
