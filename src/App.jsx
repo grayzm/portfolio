@@ -1,8 +1,8 @@
 import React from 'react'
 import './App.css'
-import { ThemeProvider } from './components/Theme'
-import TopPanel from './components/TopPanel'
-import Dock from './components/Dock'
+import { ThemeProvider } from './components/Theme.jsx';
+import TopPanel from './components/TopPanel.jsx';
+import Dock from './components/Dock.jsx';
 
 import { IdCard } from "lucide-react";
 import { BriefcaseBusiness } from "lucide-react";

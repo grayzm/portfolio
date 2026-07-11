@@ -1,6 +1,6 @@
 import React, { act } from 'react';
 import '../../styles/Projects.css';
-import { useSoundFX } from '../useSoundFX';
+import { useSoundFX } from '../useSoundFX.jsx';
 import { motion } from 'motion/react';
 import Window from '../Window.jsx';
 

@@ -1,8 +1,8 @@
 import React from 'react';
 import '../../styles/Projects.css';
-import { useSoundFX } from '../useSoundFX';
+import { useSoundFX } from '../useSoundFX.jsx';
 import { motion } from 'motion/react';
-import { useTheme } from '../Theme';
+import { useTheme } from '../Theme.jsx';
 import Window from '../Window.jsx';
 
 import { XMarkIcon } from '@heroicons/react/24/outline';

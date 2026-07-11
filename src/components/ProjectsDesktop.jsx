@@ -1,6 +1,6 @@
 import React from 'react';
 import '../styles/ProjectsDesktop.css'
-import { useSoundFX } from './useSoundFX';
+import { useSoundFX } from './useSoundFX.jsx';
 import { AnimatePresence } from 'motion/react';
 
 import randrumIcon from '../assets/icons/randrum.png';

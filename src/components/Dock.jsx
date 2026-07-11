@@ -1,6 +1,6 @@
 import { act } from "react";
 import "../styles/Dock.css";
-import { useSoundFX } from "./useSoundFX";
+import { useSoundFX } from "./useSoundFX.jsx";
 
 export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
   const sounds = useSoundFX();
