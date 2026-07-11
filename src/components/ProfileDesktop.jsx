@@ -87,12 +87,37 @@ export default function ProfileDesktop() {
     },
   ]);
 
+  const highestZIndex = React.useRef(5);
+
   const openFolder = (folder) => {
-    if (!openFolders.some((f) => f.name === folder.name)) {
-      setOpenFolders((prev) => [...prev, folder]);
-      sounds.playClick();
-    }
+      highestZIndex.current += 1;
+      
+      setOpenFolders((prev) => {
+          const isOpened = prev.some((f) => f.name === folder.name);
+
+          if (!isOpened) {
+              sounds.playClick();
+              return [...prev, {...folder, zIndex: highestZIndex.current }];
+          }
+
+          return prev.map((f) =>
+              f.name === folder.name
+                  ? { ...f, zIndex: highestZIndex.current }
+                  : f
+          );
+      });
   };
+
+  const bringToFront = (folderName) => {
+        highestZIndex.current += 1;
+        setOpenFolders((prev) =>
+            prev.map((folder) =>
+                folder.name === folderName
+                    ? { ...folder, zIndex: highestZIndex.current }
+                    : folder
+            )
+        )
+    }
 
   const closeFolder = (folderName) => {
     setOpenFolders((prev) => prev.filter((folder) => folder.name !== folderName));
@@ -139,6 +164,8 @@ export default function ProfileDesktop() {
               }}
               defaultPosition={folder.defaultPosition}
               defaultSize={folder.defaultSize}
+              localZIndex={folder.zIndex || 5}
+              bringToFront={() => bringToFront(folder.name)}
             >
               <SelectedContent />
             </Window>

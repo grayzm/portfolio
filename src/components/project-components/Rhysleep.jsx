@@ -32,7 +32,7 @@ import therapy from '../../assets/visuals/rhysleep/process/therapy.webp';
 import breathingOld from '../../assets/visuals/rhysleep/process/breathing.webp';
 import whiteNoise from '../../assets/visuals/rhysleep/process/white-noise.webp';
 
-export default function Rhysleep({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function Rhysleep({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
     const contributions = ['UX research', 'UI design', 'Hi-fi protoyping', 'Quality assurance'];
@@ -80,6 +80,8 @@ export default function Rhysleep({ folderName, key, closeFolder, defaultPosition
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (

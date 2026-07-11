@@ -9,7 +9,7 @@ import ubookIcon from '../assets/icons/ubook.png';
 import streetSwipeIcon from '../assets/icons/street-swipe2.png';
 import birdboxIcon from '../assets/icons/birdbox.png';
 import rhysleepIcon from '../assets/icons/rhysleep.png';
-import { FileCode } from 'lucide-react';
+import { FileCode, LucideVolumeOff } from 'lucide-react';
 
 import RandrumContents from '../components/project-components/Randrum.jsx';
 import SoonContents from '../components/project-components/Soon.jsx';
@@ -92,12 +92,37 @@ export default function ProjectsDesktop() {
 
     const [openFolders, setOpenFolders] = React.useState([]);
 
+    const highestZIndex = React.useRef(5);
+
     const openFolder = (folder) => {
-        if (!openFolders.includes(folder.name)) {
-            setOpenFolders((prev) => [...prev, folder]);
-            sounds.playClick();
-        }
+        highestZIndex.current += 1;
+        
+        setOpenFolders((prev) => {
+            const isOpened = prev.some((f) => f.name === folder.name);
+
+            if (!isOpened) {
+                sounds.playClick();
+                return [...prev, {...folder, zIndex: highestZIndex.current }];
+            }
+
+            return prev.map((f) =>
+                f.name === folder.name
+                    ? { ...f, zIndex: highestZIndex.current }
+                    : f
+            );
+        });
     };
+
+    const bringToFront = (folderName) => {
+        highestZIndex.current += 1;
+        setOpenFolders((prev) =>
+            prev.map((folder) =>
+                folder.name === folderName
+                    ? { ...folder, zIndex: highestZIndex.current }
+                    : folder
+            )
+        )
+    }
 
     const closeFolder = (folderName) => {
         setOpenFolders((prev) => prev.filter((folder) => folder.name !== folderName));
@@ -146,6 +171,8 @@ export default function ProjectsDesktop() {
                                 closeFolder={closeFolder}
                                 defaultPosition={folder.defaultPosition}
                                 defaultSize={folder.defaultSize}
+                                localZIndex={folder.zIndex || 5}
+                                bringToFront={() => bringToFront(folder.name)}
                             />
                         )
                     })}

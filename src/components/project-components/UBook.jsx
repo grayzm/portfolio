@@ -23,7 +23,7 @@ import approvals from '../../assets/visuals/ubook/process/approvals.webp';
 import bookings from '../../assets/visuals/ubook/process/bookings.webp';
 import meetingRooms from '../../assets/visuals/ubook/process/meeting-rooms.webp';
 
-export default function UBook({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function UBook({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
     const contributions = ['UX research', 'UI design', 'Hi-fi protoyping', 'Quality assurance'];
@@ -71,6 +71,8 @@ export default function UBook({ folderName, key, closeFolder, defaultPosition, d
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (

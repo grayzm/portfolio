@@ -5,14 +5,17 @@ import { XMarkIcon } from '@heroicons/react/24/outline';
 let globalZIndex = 5;
 
 export default function Window({ 
-    id, 
+    // id, 
     title, 
     children, 
     onClose, 
     defaultPosition = { top: '10%', left: '10%' }, 
     defaultSize = { width: 400, height: 300 },
-    windowButtons
+    windowButtons,
+    localZIndex,
+    bringToFront,
 }) {
+    
     const windowRef = React.useRef(null);
 
     const [position, setPosition] = React.useState({
@@ -26,11 +29,11 @@ export default function Window({
     const [isResizing, setIsResizing] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
 
-    const [localZIndex, setLocalZIndex] = React.useState(globalZIndex);
-    const bringToFront = () => {
-        globalZIndex += 1;
-        setLocalZIndex(globalZIndex);
-    }
+    // const [localZIndex, setLocalZIndex] = React.useState(globalZIndex);
+    // const bringToFront = () => {
+    //     globalZIndex += 1;
+    //     setLocalZIndex(globalZIndex);
+    // }
 
     const handleDragStart = (e) => {
         if (e.target.closest('.window-btn')) return;

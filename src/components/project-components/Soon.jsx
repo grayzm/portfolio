@@ -53,7 +53,7 @@ import lv1Sketch from '../../assets/visuals/soon/process/lv1-sketch.webp';
 import lv2Sketch from '../../assets/visuals/soon/process/lv2-sketch.webp';
 import lv3Sketch from '../../assets/visuals/soon/process/lv3-sketch.webp';
 
-export default function Soon({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function Soon({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
     const contributions = ['Environmental art', 'Level design', 'UI/UX design', 'Concept development', 'Music composition', 'Quality assurance'];
@@ -101,6 +101,8 @@ export default function Soon({ folderName, key, closeFolder, defaultPosition, de
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (

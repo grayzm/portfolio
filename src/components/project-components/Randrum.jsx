@@ -14,7 +14,7 @@ import practiceBts from '../../assets/visuals/randrum/practice-bts.webp';
 import createBts from '../../assets/visuals/randrum/create-bts.webp';
 import demoVid from '../../assets/visuals/randrum/demo.mp4';
 
-export default function Randrum({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function Randrum({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
     const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
@@ -61,6 +61,8 @@ export default function Randrum({ folderName, key, closeFolder, defaultPosition,
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (

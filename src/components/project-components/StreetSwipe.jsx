@@ -20,7 +20,7 @@ import environment from '../../assets/visuals/street-swipe/assets/environment.we
 import ui from '../../assets/visuals/street-swipe/assets/ui.webp';
 import animations from '../../assets/visuals/street-swipe/assets/animations.mp4';
 
-export default function StreetSwipe({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function StreetSwipe({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
     const contributions = ['Asset production', 'UI/UX design', 'Music composition', 'Concept Development', 'Quality assurance'];
@@ -68,6 +68,8 @@ export default function StreetSwipe({ folderName, key, closeFolder, defaultPosit
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (

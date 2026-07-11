@@ -29,7 +29,7 @@ import headbutt from '../../assets/visuals/birdbox/assets/headbutt.gif';
 import topHit from '../../assets/visuals/birdbox/assets/top-hit.gif';
 import middleLowHit from '../../assets/visuals/birdbox/assets/middle-low-hit.gif';
 
-export default function Birdbox({ folderName, key, closeFolder, defaultPosition, defaultSize }) {
+export default function Birdbox({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
     const { theme } = useTheme();
 
@@ -78,6 +78,8 @@ export default function Birdbox({ folderName, key, closeFolder, defaultPosition,
                 windowButtons={extraWindowButtons}
                 defaultPosition={defaultPosition}
                 defaultSize={defaultSize}
+                localZIndex={localZIndex}
+                bringToFront={bringToFront}
             >
                 <div className={`project-container p-4 title-bg ${infoPanelIsActive ? 'info-panel-active' : ''}`}>
                     {infoPanelIsActive && (
