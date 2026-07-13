@@ -7,8 +7,8 @@
     display: flex;
     flex-direction: column;
     width: 20vw;
-    min-width: 200px;
-    max-width: 600px;
+    min-width: 216px;
+    max-width: 400px;
     height: fit-content;
 
     padding: 6px;
@@ -110,6 +110,18 @@
     padding: 8px;
     justify-content: center;
     cursor: pointer;
+
+    background: #ebeaea;
+    box-shadow: 
+        inset 1.5px 1.5px 0px 1.5px rgba(255, 255, 255),
+        inset -1.5px -1.5px 0px 1.5px rgba(0, 0, 0, 0.4);
+}
+
+.music-btn:active {
+    background: #c8c8c8;
+    box-shadow: 
+        inset -1.5px -1.5px 0px 1.5px rgb(255, 255, 255),
+        inset 1.5px 1.5px 0px 1.5px rgba(0, 0, 0, 0.4);
 }
 
 .vertical-line {
@@ -118,4 +130,13 @@
     flex-shrink: 0;
     background: var(--text);
     border: none;
+}
+
+.music-icons {
+    width: 16px;
+    height: 16px;
+}
+
+.music-btn:active > .music-icons {
+  transform: scale(0.9);
 }

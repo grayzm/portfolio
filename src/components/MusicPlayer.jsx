@@ -1,10 +1,12 @@
 import React from 'react';
 import '../styles/MusicPlayer.css';
+import { useSoundFX } from './useSoundFX.jsx';
 
 import { ListMusic } from 'lucide-react';
 import { SkipBack } from 'lucide-react';
 import { SkipForward } from 'lucide-react';
 import { Play } from 'lucide-react';
+import { Pause } from 'lucide-react';
 import { Shuffle } from 'lucide-react';
 
 import soonMainMenu from '../assets/music/soon-main-menu.mp3';
@@ -14,6 +16,8 @@ import birdBoxLobby from '../assets/music/birdbox-lobby.mp3';
 import birdBoxBattle from '../assets/music/birdbox-battle.mp3';
 
 export default function MusicPlayer() {
+    const sounds = useSoundFX();
+
     const projectsPlaylist = [
         { 
             id: 'soon1', 
@@ -59,6 +63,10 @@ export default function MusicPlayer() {
     const currentTrack = projectsPlaylist[currentIndex];
 
     React.useEffect(() => {
+        console.log(currentTrack);
+    }, [currentIndex]);
+
+    React.useEffect(() => {
         const checkOverflow = () => {
             if (containerRef.current && textRef.current) {
                 const hasOverflow = textRef.current.offsetWidth > containerRef.current.clientWidth;
@@ -88,6 +96,28 @@ export default function MusicPlayer() {
         setIsPlaying((prev) => !prev);
     }
 
+    const audioRef = React.useRef(new Audio(currentTrack.src));
+
+    React.useEffect(() => {
+        if (audioRef.current.src !== currentTrack.src) {
+            audioRef.current.src = currentTrack.src;
+
+            if (isPlaying) audioRef.current.play().catch(e => console.log(e));
+        }
+
+        if (isPlaying) {
+            audioRef.current.play().catch(e => console.log(e));
+        } else {
+            audioRef.current.pause();
+        }
+    }, [isPlaying, currentTrack.src]);
+
+    React.useEffect(() => {
+        return () => {
+            audioRef.current.pause();
+        };
+    }, []);
+
     return (
         <>
             <div className='music-player'>
@@ -111,28 +141,45 @@ export default function MusicPlayer() {
                 </div>
                 <div className='button-container'>
                     <div className='music-btn'>
-                        <Shuffle strokeWidth={1.8} style={{ width: '16px', height: '16px' }}/>
-                    </div>
-                    <div className='vertical-line'></div>
-                    <div className='music-btn'>
-                        <SkipBack strokeWidth={1.8} style={{ width: '16px', height: '16px' }}/>
+                        <Shuffle strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
                     <div 
                         className='music-btn'
                         onClick={() => {
-                            togglePlay()
+                            handlePrev();
+                            sounds.playTok();
                         }}
                     >
-                        <Play strokeWidth={1.8} style={{ width: '16px', height: '16px' }}/>
+                        <SkipBack strokeWidth={1.8} className='music-icons' />
+                    </div>
+                    <div className='vertical-line'></div>
+                    <div 
+                        className='music-btn'
+                        onClick={() => {
+                            togglePlay();
+                            sounds.playTok();
+                        }}
+                    >
+                        {isPlaying ? (
+                            <Pause strokeWidth={1.8} className='music-icons' />
+                        ) : (
+                            <Play strokeWidth={1.8} className='music-icons' />
+                        )}
+                    </div>
+                    <div className='vertical-line'></div>
+                    <div 
+                        className='music-btn'
+                        onClick={() => {
+                            handleNext();
+                            sounds.playTok();
+                        }}
+                    >
+                        <SkipForward strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
                     <div className='music-btn'>
-                        <SkipForward strokeWidth={1.8} style={{ width: '16px', height: '16px' }}/>
-                    </div>
-                    <div className='vertical-line'></div>
-                    <div className='music-btn'>
-                        <ListMusic strokeWidth={1.8} style={{ width: '16px', height: '16px' }}/>
+                        <ListMusic strokeWidth={1.8} className='music-icons' />
                     </div>
                 </div>
             </div>
