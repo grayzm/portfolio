@@ -18,17 +18,30 @@
     gap: 16px;
 }
 
-#settings {
-    font-size: 14px;
+.panel-btn-container {
+    display: flex;
+    width: 24px;
+    height: 24px;
+    justify-content: center;
+    align-items: center;
     cursor: pointer;
 }
-
-#settings:hover {
-    transform: scale(1.1);
+.panel-btn-container.active {
+    background: var(--text);
+    color: var(--text-bg);
 }
 
-#settings:active {
+.panel-btn-container:active {
     transform: rotate(90deg);
+}
+
+.music-player-wrapper {
+    position: absolute;
+    z-index: 5;
+    top: 46px;
+    right: 14px;
+    width: fit-content;
+    height: fit-content;
 }
 
 #settings-window {

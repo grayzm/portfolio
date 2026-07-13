@@ -3,7 +3,9 @@ import "../styles/TopPanel.css";
 import { useTheme } from "./Theme.jsx";
 import { useSoundFX } from "./useSoundFX.jsx";
 import { useClickOutside } from "./useClickOutside.js";
+import MusicPlayer from "./MusicPlayer.jsx";
 
+import { Disc, Disc3 } from 'lucide-react';
 import { MoonIcon as MoonIconOutlined } from "@heroicons/react/24/outline";
 import { SunIcon as SunIconOutlined } from "@heroicons/react/24/outline";
 import { MoonIcon as MoonIconFilled } from "@heroicons/react/24/solid";
@@ -11,8 +13,10 @@ import { SunIcon as SunIconFilled } from "@heroicons/react/24/solid";
 
 export default function TopPanel() {
   const sounds = useSoundFX();
-
   const { theme, toggleTheme, setTheme } = useTheme();
+
+  const windowRef = React.useRef(null);
+
   const themeBtn = [
     { id: 1, label: "dark" },
     { id: 2, label: "light" },
@@ -41,11 +45,10 @@ export default function TopPanel() {
     return () => clearInterval(timer);
   }, []);
 
-  const [settingIsOpened, setSettingIsOpened] = React.useState(false);
-  const settingsWindowRef = React.useRef(null);
+  const [activeWindow, setActiveWindow] = React.useState(null);
 
-  useClickOutside(settingsWindowRef, () => {
-    setSettingIsOpened(false);
+  useClickOutside(windowRef, () => {
+    setActiveWindow(null);
   });
 
   return (
@@ -53,23 +56,40 @@ export default function TopPanel() {
         <div className="top-panel">
             <h2>Graicella Michelle S</h2>
             <div id="date-time">
+                <div className={`panel-btn-container ${activeWindow === 'music' ? 'active' : ''}`}
+                    onMouseDown={(e) => {
+                        e.stopPropagation();
+                        setActiveWindow((prev) => prev === 'music' ? null : 'music');
+                        sounds.playClick();
+                        console.log(`music is opened: ${activeWindow}`);
+                    }}
+                > 
+                    <i className="fa-solid fa-compact-disc" style={{ fontSize: '14px' }}></i>
+                </div>
                 <h2>{weekday} {date}</h2>
                 <h2>{time}</h2>
                 <div
-                    id="settings"
+                    id='settings'
+                    className={`panel-btn-container ${activeWindow === 'settings' ? 'active' : ''}`}
                     onMouseDown={(e) => {
                         e.stopPropagation();
-                        setSettingIsOpened(!settingIsOpened)
+                        setActiveWindow((prev) => prev === 'settings' ? null : 'settings');
                         sounds.playClick();
-                        console.log(`setting is opened: ${settingIsOpened}`);
+                        console.log(`setting is opened: ${activeWindow}`);
                     }}
                 > 
-                    <i className="fa-solid fa-gear"></i>
+                    <i className="fa-solid fa-gear" style={{ fontSize: '14px' }}></i>
                 </div>
             </div>
 
-            {settingIsOpened && (
-                <div id="settings-window" ref={settingsWindowRef}>
+            {(activeWindow === 'music') && (
+                <div ref={windowRef} className='music-player-wrapper'>
+                    <MusicPlayer />
+                </div>
+            )}
+
+            {(activeWindow === 'settings') && (
+                <div id="settings-window" ref={windowRef}>
                     <div className="window-title">
                     <p>settings</p>
                     </div>

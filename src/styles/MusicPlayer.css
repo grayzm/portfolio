@@ -1,0 +1,121 @@
+.music-player {
+    /* position: absolute;
+    z-index: 5;
+    top: 46px;
+    right: 200px; */
+    
+    display: flex;
+    flex-direction: column;
+    width: 20vw;
+    min-width: 200px;
+    max-width: 600px;
+    height: fit-content;
+
+    padding: 6px;
+    gap: 8px;
+    background: var(--text-bg);
+    border-radius: 3px;
+    border: solid 1px var(--border);
+    box-shadow: var(--shadow-window);
+}
+
+.music-title {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    overflow: hidden;
+
+    justify-content: flex-start;
+    align-items: center;
+    padding: 4px;
+
+    background: var(--dock-bg);
+    border: solid 1px var(--border);
+    box-shadow: var(--shadow-music-title);
+}
+
+.ticker-content {
+    display: flex;
+    align-items: center;
+    white-space: nowrap;
+}
+
+.ticker-content.center {
+    width: 100%;
+    justify-content: center;
+}
+
+.ticker-content.animate {
+    width: max-content;
+    justify-content: flex-start;
+    animation: scroll-left 15s linear infinite;
+    will-change: transform;
+}
+
+.ticker-content.animate p {
+    padding-left: 40px;
+}
+
+@keyframes scroll-left {
+    from {
+        transform: translateX(0);
+    }
+    to {
+        transform: translateX(-50%);
+    }
+}
+
+.progress-bar {
+    display: grid;
+    grid-template-columns: fit-content(24px) 1fr fit-content(24px);
+    width: 100%;
+    height: fit-content;
+    gap: 8px;
+}
+
+.slider-container {
+    /* background: red; */
+    display: flex;
+    width: 100%;
+    align-items: center;
+}
+
+.timeline {
+    width: 100%;
+    height: 1px;
+    background: var(--text);
+    border: none;
+}
+
+.slider {
+    width: 4px;
+    height: 80%;
+    background: var(--text);
+
+    cursor: pointer;
+}
+
+.button-container {
+    display: flex;
+    width: 100%;
+    height: fit-content;
+    border: solid 1px var(--border);
+    /* background: red; */
+}
+
+.music-btn {
+    display: flex;
+    flex: 1;
+    height: fit-content;
+    padding: 8px;
+    justify-content: center;
+    cursor: pointer;
+}
+
+.vertical-line {
+    width: 1px;
+    align-self: stretch;
+    flex-shrink: 0;
+    background: var(--text);
+    border: none;
+}

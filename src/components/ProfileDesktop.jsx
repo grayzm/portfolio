@@ -8,7 +8,6 @@ import Window from '../components/Window.jsx';
 import { FolderIcon } from '@heroicons/react/24/outline';
 import { FolderClosed } from 'lucide-react';
 import { FileText } from 'lucide-react';
-import { XMarkIcon } from '@heroicons/react/24/outline';
 
 import emailIcon from '../assets/icons/email.png';
 import linkedInIcon from '../assets/icons/linkedin.png';
