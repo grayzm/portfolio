@@ -1,6 +1,7 @@
 import React from 'react'
 import './App.css'
 import { ThemeProvider } from './components/Theme.jsx';
+import { AudioProvider } from './components/AudioContext.jsx';
 import TopPanel from './components/TopPanel.jsx';
 import Dock from './components/Dock.jsx';
 
@@ -35,17 +36,19 @@ function App() {
   return (
     <div className='app-container'>
       <ThemeProvider>
-        <TopPanel />
-        <div className='main'>
-          <Dock 
-            desktopList={desktops}
-            activeDesktop={activeDesktop}
-            setActiveDesktop={setActiveDesktop}
-          />
-          <div className='desktop-container'>
-            {desktopComponents[activeDesktop] || <UnderConstruction />}
+        <AudioProvider>
+          <TopPanel />
+          <div className='main'>
+            <Dock 
+              desktopList={desktops}
+              activeDesktop={activeDesktop}
+              setActiveDesktop={setActiveDesktop}
+            />
+            <div className='desktop-container'>
+              {desktopComponents[activeDesktop] || <UnderConstruction />}
+            </div>
           </div>
-        </div>
+        </AudioProvider>
       </ThemeProvider>
     </div>
   )

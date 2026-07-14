@@ -1,6 +1,7 @@
 import React from 'react';
 import '../styles/MusicPlayer.css';
 import { useSoundFX } from './useSoundFX.jsx';
+import { useAudio } from './AudioContext.jsx';
 
 import { ListMusic } from 'lucide-react';
 import { SkipBack } from 'lucide-react';
@@ -9,62 +10,22 @@ import { Play } from 'lucide-react';
 import { Pause } from 'lucide-react';
 import { Shuffle } from 'lucide-react';
 
-import soonMainMenu from '../assets/music/soon-main-menu.mp3';
-import soonEnding from '../assets/music/soon-ending.mp3';
-import streetSwipe from '../assets/music/street-swipe.mp3';
-import birdBoxLobby from '../assets/music/birdbox-lobby.mp3';
-import birdBoxBattle from '../assets/music/birdbox-battle.mp3';
-
 export default function MusicPlayer() {
     const sounds = useSoundFX();
+    const { currentTrack, isPlaying, handlePrev, togglePlay, handleNext } = useAudio();
 
-    const projectsPlaylist = [
-        { 
-            id: 'soon1', 
-            title: 'Soon Main Menu',
-            src: soonMainMenu,
-            duration: '2:13',
-         },
-        { 
-            id: 'soon2', 
-            title: 'Soon Ending', 
-            src: soonEnding,
-            duration: '2:18',
-        },
-        { 
-            id: 'ss', 
-            title: 'Street Swipe', 
-            src: streetSwipe,
-            duration: '2:47',
-        },
-        { 
-            id: 'bb1', 
-            title: 'Birdbox Lobby', 
-            src: birdBoxLobby,
-            duration: '1:06',
-        },
-        { 
-            id: 'bb2', 
-            title: 'Birdbox Battle', 
-            src: birdBoxBattle,
-            duration: '0:54',
-        },
-    ]
-    
     const containerRef = React.useRef(null);
     const textRef = React.useRef(null);
     const [isOverflowing, setIsOverflowing] = React.useState(false);
-    
-    const [currentIndex, setCurrentIndex] = React.useState(0);
-    const [isPlaying, setIsPlaying] = React.useState(false);
-    const [progress, setProgress] = React.useState(0);
-    const [isShuffled, setIsShuffled] = React.useState(false);
-    
-    const currentTrack = projectsPlaylist[currentIndex];
+    const [currentProgress, setCurrentProgress] = React.useState(0);
 
     React.useEffect(() => {
-        console.log(currentTrack);
-    }, [currentIndex]);
+        const timer = setInterval(() => {
+          setCurrentProgress(new Date());
+        }, 60000);
+    
+        return () => clearInterval(timer);
+      }, []);
 
     React.useEffect(() => {
         const checkOverflow = () => {
@@ -83,40 +44,6 @@ export default function MusicPlayer() {
             window.removeEventListener('resize', checkOverflow)
         };
     }, [currentTrack.title]);
-
-    const handleNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % projectsPlaylist.length);
-    }
-
-    const handlePrev = () => {
-        setCurrentIndex((prev) => (prev - 1 + projectsPlaylist.length) % projectsPlaylist.length);
-    }
-
-    const togglePlay = () => {
-        setIsPlaying((prev) => !prev);
-    }
-
-    const audioRef = React.useRef(new Audio(currentTrack.src));
-
-    React.useEffect(() => {
-        if (audioRef.current.src !== currentTrack.src) {
-            audioRef.current.src = currentTrack.src;
-
-            if (isPlaying) audioRef.current.play().catch(e => console.log(e));
-        }
-
-        if (isPlaying) {
-            audioRef.current.play().catch(e => console.log(e));
-        } else {
-            audioRef.current.pause();
-        }
-    }, [isPlaying, currentTrack.src]);
-
-    React.useEffect(() => {
-        return () => {
-            audioRef.current.pause();
-        };
-    }, []);
 
     return (
         <>
@@ -137,7 +64,7 @@ export default function MusicPlayer() {
                         <hr className='timeline'></hr>
                         <div className='slider'></div>
                     </div>
-                    <p>00.00</p>
+                    <p>{currentTrack.duration}</p>
                 </div>
                 <div className='button-container'>
                     <div className='music-btn'>
