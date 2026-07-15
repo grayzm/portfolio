@@ -75,6 +75,7 @@
 
 .slider-container {
     /* background: red; */
+    position: relative;
     display: flex;
     width: 100%;
     align-items: center;
@@ -88,10 +89,10 @@
 }
 
 .slider {
+    position: absolute;
     width: 4px;
     height: 80%;
     background: var(--text);
-
     cursor: pointer;
 }
 

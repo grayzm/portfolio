@@ -3,29 +3,30 @@ import '../styles/MusicPlayer.css';
 import { useSoundFX } from './useSoundFX.jsx';
 import { useAudio } from './AudioContext.jsx';
 
-import { ListMusic } from 'lucide-react';
-import { SkipBack } from 'lucide-react';
-import { SkipForward } from 'lucide-react';
-import { Play } from 'lucide-react';
-import { Pause } from 'lucide-react';
-import { Shuffle } from 'lucide-react';
+import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle } from 'lucide-react';
 
 export default function MusicPlayer() {
     const sounds = useSoundFX();
-    const { currentTrack, isPlaying, handlePrev, togglePlay, handleNext } = useAudio();
+    const { currentTrack, duration, isPlaying, progress, percentage, handlePrev, togglePlay, handleNext } = useAudio();
 
     const containerRef = React.useRef(null);
     const textRef = React.useRef(null);
     const [isOverflowing, setIsOverflowing] = React.useState(false);
-    const [currentProgress, setCurrentProgress] = React.useState(0);
 
-    React.useEffect(() => {
-        const timer = setInterval(() => {
-          setCurrentProgress(new Date());
-        }, 60000);
-    
-        return () => clearInterval(timer);
-      }, []);
+    const formatTime = (progress) => {
+        if (isNaN(progress)) return '00:00';
+        const mins = Math.floor(progress / 60);
+        const secs = Math.floor(progress % 60);
+        
+        return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    };
+
+    const formatDuration = (duration) => {
+        const mins = Math.floor(duration / 60);
+        const secs = Math.floor(duration % 60);
+        
+        return `${mins < 10 ? '0' : ''}${mins}:${secs < 10 ? '0' : ''}${secs}`;
+    }
 
     React.useEffect(() => {
         const checkOverflow = () => {
@@ -59,12 +60,12 @@ export default function MusicPlayer() {
                     </div>
                 </div>
                 <div className='progress-bar'>
-                    <p>00.00</p>
+                    <p>{formatTime(progress)}</p>
                     <div className='slider-container'>
                         <hr className='timeline'></hr>
-                        <div className='slider'></div>
+                        <div className='slider' style={{ left: `${percentage}%` }}></div>
                     </div>
-                    <p>{currentTrack.duration}</p>
+                    <p>{formatDuration(duration)}</p>
                 </div>
                 <div className='button-container'>
                     <div className='music-btn'>

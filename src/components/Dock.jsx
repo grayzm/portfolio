@@ -15,7 +15,7 @@ export default function Dock({ desktopList, activeDesktop, setActiveDesktop }) {
         {desktops.map((desktop, index) => {
             const isActive = activeDesktop === desktop.name;
             return (
-              <div className='flex g-6' style={{ alignItems: 'center' }}>
+              <div key={index} className='flex g-6' style={{ alignItems: 'center' }}>
                 <div
                     className={`nav ${isActive ? 'active' : ''}`}
                     key={index}
