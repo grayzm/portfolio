@@ -17,7 +17,7 @@ import demoVid from '../../assets/visuals/randrum/demo.mp4';
 export default function Randrum({ folderName, key, closeFolder, defaultPosition, defaultSize, localZIndex, bringToFront }) {
     const sounds = useSoundFX();
 
-    const tools = ['Swfit', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
+    const tools = ['Swift', 'SwiftUI', 'XCode', 'Git', 'GitHub', 'Logic Pro'];
 
     const [infoPanelIsActive, setInfoPanelIsActive] = React.useState(true);
     const [logPanelIsActive, setLogPanelIsActvie] = React.useState(false);

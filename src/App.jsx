@@ -5,11 +5,7 @@ import { AudioProvider } from './components/AudioContext.jsx';
 import TopPanel from './components/TopPanel.jsx';
 import Dock from './components/Dock.jsx';
 
-import { IdCard } from "lucide-react";
-import { BriefcaseBusiness } from "lucide-react";
-import { Gamepad2 } from "lucide-react";
-import { LibraryBig } from "lucide-react";
-import { Lock } from "lucide-react";
+import { IdCard, BriefcaseBusiness, Gamepad2, LibraryBig, Lock } from "lucide-react";
 
 import ProfileDesktop from './components/ProfileDesktop.jsx'
 import ProjectsDesktop from './components/ProjectsDesktop.jsx'

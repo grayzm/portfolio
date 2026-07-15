@@ -7,7 +7,19 @@ import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle } from 'lucide-r
 
 export default function MusicPlayer() {
     const sounds = useSoundFX();
-    const { currentTrack, duration, isPlaying, progress, percentage, handlePrev, togglePlay, handleNext } = useAudio();
+    const { 
+        currentPlaylist,
+        currentTrack, 
+        duration, 
+        isPlaying, 
+        progress, 
+        percentage, 
+        handlePrev, 
+        togglePlay, 
+        handleNext,
+        handleShuffle,
+        isShuffled,
+     } = useAudio();
 
     const containerRef = React.useRef(null);
     const textRef = React.useRef(null);
@@ -67,9 +79,15 @@ export default function MusicPlayer() {
                     </div>
                     <p>{formatDuration(duration)}</p>
                 </div>
-                <div className='button-container'>
+                <div 
+                    className='button-container'
+                    onClick={() => {
+                        console.log(currentPlaylist);
+                        sounds.playTok();
+                    }}
+                >
                     <div className='music-btn'>
-                        <Shuffle strokeWidth={1.8} className='music-icons' />
+                        <ListMusic strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
                     <div 
@@ -106,8 +124,14 @@ export default function MusicPlayer() {
                         <SkipForward strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
-                    <div className='music-btn'>
-                        <ListMusic strokeWidth={1.8} className='music-icons' />
+                    <div 
+                        className={`music-btn ${isShuffled ? 'active' : ''}`}
+                        onClick={() => {
+                            handleShuffle();
+                            sounds.playTok();
+                        }}
+                    >
+                        <Shuffle strokeWidth={1.8} className='music-icons' />
                     </div>
                 </div>
             </div>

@@ -28,6 +28,10 @@
   --shadow-nav: 2.5px 2.5px 0 light-dark(#000, #d4d4d4);
   --shadow-window: 0 4px 4px light-dark(rgba(0,0,0, 0.25), rgba(255, 255, 255, 0.25));
   --shadow-music-title: inset 0 0 2px 1px light-dark(rgba(0,0,0, 0.3), rgba(255, 255, 255, 0.25));
+  --music-btn: light-dark(#ebeaea, #3b3b3b);
+  --music-btn-active: light-dark(#cccccc, #252525);
+  --music-btn1: light-dark(#fff, #6f6f6f);
+  --music-btn2: light-dark(#a0a0a0, #000);
 
   --sans: system-ui, 'Segoe UI', Roboto, sans-serif;
   --heading: system-ui, 'Segoe UI', Roboto, sans-serif;

@@ -36,14 +36,17 @@ export function AudioProvider({children}) {
             src: birdBoxBattle,
         },
     ]
+
+    // const shuffledPlaylist = shuffle(projectsPlaylist);
     
+    const [currentPlaylist, setCurrentPlaylist] = React.useState(projectsPlaylist);
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
     const [duration, setDuation] = React.useState(0);
     const [isShuffled, setIsShuffled] = React.useState(false);
     
-    const currentTrack = projectsPlaylist[currentIndex];
+    const currentTrack = currentPlaylist[currentIndex];
 
     React.useEffect(() => {
         console.log(currentTrack);
@@ -51,19 +54,48 @@ export function AudioProvider({children}) {
 
     const handlePrev = () => {
         if (progress <= 2) {
-            setCurrentIndex((prev) => (prev - 1 + projectsPlaylist.length) % projectsPlaylist.length);
+            setCurrentIndex((prev) => (prev - 1 + currentPlaylist.length) % currentPlaylist.length);
         } else {
             seek(0);
         }
-    }
-
-    const handleNext = () => {
-        setCurrentIndex((prev) => (prev + 1) % projectsPlaylist.length);
-    }
+    };
 
     const togglePlay = () => {
-        setIsPlaying((prev) => !prev);
-    }
+        setIsPlaying(!isPlaying);
+    };
+
+    const handleNext = () => {
+        setCurrentIndex((prev) => (prev + 1) % currentPlaylist.length);
+    };
+    
+    const handleShuffle = () => {
+        const flippedIsShuffled = !isShuffled;
+        setIsShuffled(flippedIsShuffled);
+        
+        if (flippedIsShuffled) {
+            const shuffledPlaylist = shuffle(projectsPlaylist);
+            setCurrentPlaylist(shuffledPlaylist);
+        } else {
+            setCurrentPlaylist(projectsPlaylist);
+        }
+
+        console.log(`flipped: ${flippedIsShuffled}`);
+    };
+
+    React.useEffect(() => {
+        console.log(`isShuffled: ${isShuffled}`);
+    }, [isShuffled]);
+    
+     function shuffle(playlist) {
+        const shuffled = [...playlist];
+
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        };
+
+        return shuffled;
+    };
 
     const audioRef = React.useRef(new Audio());
 
@@ -121,7 +153,20 @@ export function AudioProvider({children}) {
     }, [progress]);
 
     return (
-        <AudioContext.Provider value={{ currentTrack, duration, isPlaying, progress, percentage, handlePrev, togglePlay, handleNext}}>
+        <AudioContext.Provider value={{ 
+                currentPlaylist,
+                currentTrack, 
+                duration, 
+                isPlaying, 
+                progress, 
+                percentage, 
+                handlePrev, 
+                togglePlay, 
+                handleNext,
+                isShuffled,
+                handleShuffle,
+            }}
+        >
             {children}
         </AudioContext.Provider>
     )

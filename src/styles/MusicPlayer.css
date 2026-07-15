@@ -112,17 +112,23 @@
     justify-content: center;
     cursor: pointer;
 
-    background: #ebeaea;
+    background: var(--music-btn);
     box-shadow: 
-        inset 1.5px 1.5px 0px 1.5px rgba(255, 255, 255),
-        inset -1.5px -1.5px 0px 1.5px rgba(0, 0, 0, 0.4);
+        inset 1.5px 1.5px 0px 1.5px var(--music-btn1),
+        inset -1.5px -1.5px 0px 1.5px var(--music-btn2);
 }
 
 .music-btn:active {
-    background: #c8c8c8;
+    background: var(--music-btn-active);
     box-shadow: 
-        inset -1.5px -1.5px 0px 1.5px rgb(255, 255, 255),
-        inset 1.5px 1.5px 0px 1.5px rgba(0, 0, 0, 0.4);
+        inset -1.5px -1.5px 0px 1.5px var(--music-btn1),
+        inset 1.5px 1.5px 0px 1.5px var(--music-btn2);
+}
+.music-btn.active {
+    background: var(--music-btn-active);
+    box-shadow: 
+        inset -1.5px -1.5px 0px 1.5px var(--music-btn1),
+        inset 1.5px 1.5px 0px 1.5px var(--music-btn2);
 }
 
 .vertical-line {
