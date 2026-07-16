@@ -2,14 +2,22 @@ import React from 'react';
 import '../styles/MusicPlayer.css';
 import { useSoundFX } from './useSoundFX.jsx';
 import { useAudio } from './AudioContext.jsx';
+import { useTheme } from './Theme.jsx';
 
-import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle } from 'lucide-react';
+import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle, AudioLines } from 'lucide-react';
+import { PlayIcon } from '@heroicons/react/24/solid';
+
+import animationBlack from '../assets/pixel/music-black.gif';
+import animationWhite from '../assets/pixel/music-white.gif';
 
 export default function MusicPlayer() {
     const sounds = useSoundFX();
+    const { theme } = useTheme();
+
     const { 
         currentPlaylist,
         currentTrack, 
+        isSelected,
         duration, 
         isPlaying, 
         progress, 
@@ -24,6 +32,7 @@ export default function MusicPlayer() {
     const containerRef = React.useRef(null);
     const textRef = React.useRef(null);
     const [isOverflowing, setIsOverflowing] = React.useState(false);
+    const [playListIsOpened, setPlaylistIsOpened] = React.useState(false);
 
     const formatTime = (progress) => {
         if (isNaN(progress)) return '00:00';
@@ -61,9 +70,36 @@ export default function MusicPlayer() {
     return (
         <>
             <div className='music-player'>
+
+                <div className='music-title' ref={containerRef}>
+                    {!playListIsOpened && (
+                        <div className='music-gif' style={{ backgroundImage: `url(${theme === 'dark' ? animationWhite : animationBlack})`}}></div>
+                    )}
+                    {playListIsOpened && (
+                        <div className='flex-column hidden' style={{ width: '100%', height: '120px' }}>
+                            <div className='scroll-container flex-column'>
+                                {currentPlaylist.map((track) => (
+                                    <div className={`playlist-title ${isSelected === track.title ? 'selected' : ''}`}>
+                                        <div className={`ticker-content ${isOverflowing ? 'animate' : ''}`}>
+                                            <p ref={textRef}>{track.title}</p>
+                                            {isOverflowing && (
+                                                <p>{track.title}</p>
+                                            )}
+                                        </div>
+                                        {/* {isSelected === track.title ? (
+                                            <AudioLines strokeWidth={1.8} size={13}/>)
+                                            : ( <PlayIcon width={14} height={14} style={{ cursor: 'pointer' }}/> )
+                                        } */}
+                                    </div>
+                                ))}
+                            </div>
+                        </div>
+                    )}
+                </div>
+
                 <div className='music-title' ref={containerRef}>
                     <div className='flex full hidden just-c' style={{ padding: '0 2px' }}>
-                        <div className={`ticker-content ${isOverflowing ? 'animate' : ''}`}>
+                        <div className={`ticker-content ${isOverflowing ? 'animate' : 'center'}`}>
                             <p ref={textRef}>{currentTrack.title}</p>
                             {isOverflowing && (
                                 <p>{currentTrack.title}</p>
@@ -71,6 +107,7 @@ export default function MusicPlayer() {
                         </div>
                     </div>
                 </div>
+
                 <div className='progress-bar'>
                     <p>{formatTime(progress)}</p>
                     <div className='slider-container'>
@@ -79,10 +116,13 @@ export default function MusicPlayer() {
                     </div>
                     <p>{formatDuration(duration)}</p>
                 </div>
+
                 <div 
                     className='button-container'
                     onClick={() => {
                         console.log(currentPlaylist);
+                        console.log(isSelected);
+                        setPlaylistIsOpened(!playListIsOpened);
                         sounds.playTok();
                     }}
                 >
@@ -134,6 +174,7 @@ export default function MusicPlayer() {
                         <Shuffle strokeWidth={1.8} className='music-icons' />
                     </div>
                 </div>
+
             </div>
         </>
     )

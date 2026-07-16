@@ -41,12 +41,13 @@ export function AudioProvider({children}) {
     
     const [currentPlaylist, setCurrentPlaylist] = React.useState(projectsPlaylist);
     const [currentIndex, setCurrentIndex] = React.useState(0);
+    const currentTrack = currentPlaylist[currentIndex];
+    const [isSelected, setSelected] = React.useState(currentTrack.title);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
     const [duration, setDuation] = React.useState(0);
     const [isShuffled, setIsShuffled] = React.useState(false);
     
-    const currentTrack = currentPlaylist[currentIndex];
 
     React.useEffect(() => {
         console.log(currentTrack);
@@ -156,6 +157,7 @@ export function AudioProvider({children}) {
         <AudioContext.Provider value={{ 
                 currentPlaylist,
                 currentTrack, 
+                isSelected,
                 duration, 
                 isPlaying, 
                 progress, 

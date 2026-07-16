@@ -29,12 +29,6 @@ export default function Window({
     const [isResizing, setIsResizing] = React.useState(false);
     const [isDragging, setIsDragging] = React.useState(false);
 
-    // const [localZIndex, setLocalZIndex] = React.useState(globalZIndex);
-    // const bringToFront = () => {
-    //     globalZIndex += 1;
-    //     setLocalZIndex(globalZIndex);
-    // }
-
     const handleDragStart = (e) => {
         if (e.target.closest('.window-btn')) return;
         e.preventDefault();

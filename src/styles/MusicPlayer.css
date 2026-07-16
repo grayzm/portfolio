@@ -6,7 +6,7 @@
     
     display: flex;
     flex-direction: column;
-    width: 20vw;
+    width: 15vw;
     min-width: 216px;
     max-width: 400px;
     height: fit-content;
@@ -34,8 +34,20 @@
     box-shadow: var(--shadow-music-title);
 }
 
+.music-gif {
+    /* background: red; */
+    width: 100%;
+    height: 120px;
+
+    background-repeat: no-repeat;
+    background-size: auto 85%;
+    background-position: 50% 50%;
+    image-rendering: pixelated;
+}
+
 .ticker-content {
     display: flex;
+    width: 100%;
     align-items: center;
     white-space: nowrap;
 }
@@ -63,6 +75,21 @@
     to {
         transform: translateX(-50%);
     }
+}
+
+.playlist-title {
+    display: flex;
+    width: 100%;
+    align-items: center;
+    justify-content: space-between;
+    padding: 2px;
+}
+.playlist-title.selected {
+    background: var(--text);
+    color: var(--text-bg);
+}
+.playlist-title:hover {
+    box-shadow: inset 0 0 0 1px var(--border);
 }
 
 .progress-bar {
