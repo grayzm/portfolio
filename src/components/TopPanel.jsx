@@ -45,11 +45,15 @@ export default function TopPanel() {
     return () => clearInterval(timer);
   }, []);
 
-  const [activeWindow, setActiveWindow] = React.useState(null);
+  const [activeWindow, setActiveWindow] = React.useState([]);
 
   useClickOutside(windowRef, () => {
-    setActiveWindow(null);
+    setActiveWindow((prev) => prev.filter((window) => window !== 'settings'));
   });
+
+  React.useEffect(() => {
+    console.log(`activeWindow: ${activeWindow}`);
+  }, [activeWindow]);
 
   return (
     <>
@@ -59,9 +63,12 @@ export default function TopPanel() {
                 <div className={`panel-btn-container ${activeWindow === 'music' ? 'active' : ''}`}
                     onMouseDown={(e) => {
                         e.stopPropagation();
-                        setActiveWindow((prev) => prev === 'music' ? null : 'music');
+                        setActiveWindow((prev) => 
+                            prev.includes('music')
+                            ? prev.filter((window) => window !== 'music')
+                            : [...prev, 'music']
+                        );
                         sounds.playClick();
-                        console.log(`music is opened: ${activeWindow}`);
                     }}
                 > 
                     <i className="fa-solid fa-compact-disc" style={{ fontSize: '14px' }}></i>
@@ -73,22 +80,25 @@ export default function TopPanel() {
                     className={`panel-btn-container ${activeWindow === 'settings' ? 'active' : ''}`}
                     onMouseDown={(e) => {
                         e.stopPropagation();
-                        setActiveWindow((prev) => prev === 'settings' ? null : 'settings');
+                        setActiveWindow((prev) => 
+                            prev.includes('settings')
+                            ? prev.filter((window) => window !== 'settings')
+                            : [...prev, 'settings']
+                        );
                         sounds.playClick();
-                        console.log(`setting is opened: ${activeWindow}`);
                     }}
                 > 
                     <i className="fa-solid fa-gear" style={{ fontSize: '14px' }}></i>
                 </div>
             </div>
 
-            {(activeWindow === 'music') && (
-                <div ref={windowRef} className='music-player-wrapper'>
+            {(activeWindow.includes('music')) && (
+                <div className='music-player-wrapper'>
                     <MusicPlayer />
                 </div>
             )}
 
-            {(activeWindow === 'settings') && (
+            {(activeWindow.includes('settings')) && (
                 <div id="settings-window" ref={windowRef}>
                     <div className="window-title">
                     <p>settings</p>

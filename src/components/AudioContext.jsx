@@ -47,11 +47,7 @@ export function AudioProvider({children}) {
     const [progress, setProgress] = React.useState(0);
     const [duration, setDuation] = React.useState(0);
     const [isShuffled, setIsShuffled] = React.useState(false);
-    
-
-    React.useEffect(() => {
-        console.log(currentTrack);
-    }, [currentIndex]);
+    const audioRef = React.useRef(new Audio());
 
     const handlePrev = () => {
         if (progress <= 2) {
@@ -70,21 +66,16 @@ export function AudioProvider({children}) {
     };
     
     const handleShuffle = () => {
-        const flippedIsShuffled = !isShuffled;
-        setIsShuffled(flippedIsShuffled);
-        
-        if (flippedIsShuffled) {
+        setIsShuffled(!isShuffled);
+    };
+
+    React.useEffect(() => {
+        if (isShuffled) {
             const shuffledPlaylist = shuffle(projectsPlaylist);
             setCurrentPlaylist(shuffledPlaylist);
         } else {
             setCurrentPlaylist(projectsPlaylist);
         }
-
-        console.log(`flipped: ${flippedIsShuffled}`);
-    };
-
-    React.useEffect(() => {
-        console.log(`isShuffled: ${isShuffled}`);
     }, [isShuffled]);
     
      function shuffle(playlist) {
@@ -98,8 +89,6 @@ export function AudioProvider({children}) {
         return shuffled;
     };
 
-    const audioRef = React.useRef(new Audio());
-
     React.useEffect(() => {
         audioRef.current.src = currentTrack.src;
     }, [currentTrack.src]);
@@ -109,6 +98,7 @@ export function AudioProvider({children}) {
 
         if (isPlaying) {
             audioRef.current.play().catch(console.error);
+            audioRef.current.loop = true;
         } else {
             audioRef.current.pause();
         }
@@ -147,11 +137,13 @@ export function AudioProvider({children}) {
         audioRef.current.currentTime = (percent / 100) * audioRef.current.duration;
     };
 
-    const percentage = audioRef.current.duration > 0 ? (progress / audioRef.current.duration) * 100 : 0;
+    const handleSeekChange = (e) => {
+        const newTime = Number(e.target.value);
+        audioRef.current.currentTime = newTime;
+        setProgress(newTime);
+    }
 
-    React.useEffect(() => {
-        console.log(`progress: ${progress}`);
-    }, [progress]);
+    const percentage = audioRef.current.duration > 0 ? (progress / audioRef.current.duration) * 100 : 0;
 
     return (
         <AudioContext.Provider value={{ 
@@ -167,6 +159,7 @@ export function AudioProvider({children}) {
                 handleNext,
                 isShuffled,
                 handleShuffle,
+                handleSeekChange,
             }}
         >
             {children}

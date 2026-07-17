@@ -4,7 +4,7 @@ import { useSoundFX } from './useSoundFX.jsx';
 import { useAudio } from './AudioContext.jsx';
 import { useTheme } from './Theme.jsx';
 
-import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle, AudioLines } from 'lucide-react';
+import { ListMusic, SkipBack, SkipForward, Play, Pause, Shuffle, AudioLines, ChevronRight } from 'lucide-react';
 import { PlayIcon } from '@heroicons/react/24/solid';
 
 import animationBlack from '../assets/pixel/music-black.gif';
@@ -27,6 +27,7 @@ export default function MusicPlayer() {
         handleNext,
         handleShuffle,
         isShuffled,
+        handleSeekChange,
      } = useAudio();
 
     const containerRef = React.useRef(null);
@@ -79,7 +80,9 @@ export default function MusicPlayer() {
                         <div className='flex-column hidden' style={{ width: '100%', height: '120px' }}>
                             <div className='scroll-container flex-column'>
                                 {currentPlaylist.map((track) => (
-                                    <div className={`playlist-title ${isSelected === track.title ? 'selected' : ''}`}>
+                                    <div 
+                                        className={`playlist-title ${isSelected === track.title ? 'selected' : ''}`}
+                                    >
                                         <div className={`ticker-content ${isOverflowing ? 'animate' : ''}`}>
                                             <p ref={textRef}>{track.title}</p>
                                             {isOverflowing && (
@@ -90,6 +93,7 @@ export default function MusicPlayer() {
                                             <AudioLines strokeWidth={1.8} size={13}/>)
                                             : ( <PlayIcon width={14} height={14} style={{ cursor: 'pointer' }}/> )
                                         } */}
+                                        <ChevronRight strokeWidth={1.8} size={13} />
                                     </div>
                                 ))}
                             </div>
@@ -111,30 +115,37 @@ export default function MusicPlayer() {
                 <div className='progress-bar'>
                     <p>{formatTime(progress)}</p>
                     <div className='slider-container'>
-                        <hr className='timeline'></hr>
-                        <div className='slider' style={{ left: `${percentage}%` }}></div>
+                        {/* <hr className='timeline'></hr>
+                        <div className='slider' style={{ left: `${percentage}%` }}></div> */}
+                        <input
+                            type='range'
+                            className='input-range'
+                            min='0'
+                            max={duration || 100}
+                            value={progress}
+                            onChange={handleSeekChange}
+                            style={{ flexGrow: 1, cursor: "pointer" }}
+                        />
                     </div>
                     <p>{formatDuration(duration)}</p>
                 </div>
 
-                <div 
-                    className='button-container'
-                    onClick={() => {
-                        console.log(currentPlaylist);
-                        console.log(isSelected);
-                        setPlaylistIsOpened(!playListIsOpened);
-                        sounds.playTok();
-                    }}
-                >
-                    <div className='music-btn'>
+                <div className='button-container'>
+                    <div 
+                        className='music-btn'
+                        onMouseDown={() => {
+                            setPlaylistIsOpened(!playListIsOpened);
+                            sounds.playType();
+                        }}
+                    >
                         <ListMusic strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
                     <div 
                         className='music-btn'
-                        onClick={() => {
+                        onMouseDown={() => {
                             handlePrev();
-                            sounds.playTok();
+                            sounds.playType();
                         }}
                     >
                         <SkipBack strokeWidth={1.8} className='music-icons' />
@@ -142,9 +153,9 @@ export default function MusicPlayer() {
                     <div className='vertical-line'></div>
                     <div 
                         className='music-btn'
-                        onClick={() => {
+                        onMouseDown={() => {
                             togglePlay();
-                            sounds.playTok();
+                            sounds.playType();
                         }}
                     >
                         {isPlaying ? (
@@ -156,19 +167,20 @@ export default function MusicPlayer() {
                     <div className='vertical-line'></div>
                     <div 
                         className='music-btn'
-                        onClick={() => {
+                        onMouseDown={() => {
                             handleNext();
-                            sounds.playTok();
+                            sounds.playType();
                         }}
                     >
                         <SkipForward strokeWidth={1.8} className='music-icons' />
                     </div>
                     <div className='vertical-line'></div>
                     <div 
-                        className={`music-btn ${isShuffled ? 'active' : ''}`}
-                        onClick={() => {
+                        className='music-btn'
+                        style={{ color: `${!isShuffled ? 'color-mix(in srgb, var(--text) 40%, transparent)' : 'var(--text)'}` }}
+                        onMouseDown={() => {
                             handleShuffle();
-                            sounds.playTok();
+                            sounds.playType();
                         }}
                     >
                         <Shuffle strokeWidth={1.8} className='music-icons' />
