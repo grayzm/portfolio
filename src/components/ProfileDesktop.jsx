@@ -33,35 +33,35 @@ export default function ProfileDesktop() {
 
   const folders = [
     { 
-      id: 1, 
+      id: 'about', 
       name: 'about', 
       type: 'file', 
       defaultPosition: { top: '5%', left: '10%' }, 
       defaultSize: { width: '516px', height: '260px' } 
     },
     { 
-      id: 2, 
+      id: 'edu', 
       name: 'education-awards-honors', 
       type: 'file', 
       defaultPosition: { top: '12%', left: '65%' }, 
       defaultSize: { width: '360px', height: '360px' } 
     },
     { 
-      id: 3, 
+      id: 'tools', 
       name: 'tools', 
       type: 'file', 
       defaultPosition: { top: '22%', left: '42%' }, 
       defaultSize: { width: '270px', height: '386px' } 
     },
     { 
-      id: 4, 
+      id: 'interests', 
       name: 'interests', 
       type: 'file', 
       defaultPosition: { top: '45%', left: '7%' }, 
       defaultSize: { width: '460px', height: '240px' } 
     },
     { 
-      id: 5, 
+      id: 'contacts', 
       name: 'contact-socials', 
       type: 'folder', 
       defaultPosition: { top: '65%', left: '60%' }, 
@@ -95,8 +95,10 @@ export default function ProfileDesktop() {
           const isOpened = prev.some((f) => f.name === folder.name);
 
           if (!isOpened) {
-              sounds.playClick();
-              return [...prev, {...folder, zIndex: highestZIndex.current }];
+            sounds.playClick();
+            return [...prev, {...folder, zIndex: highestZIndex.current }];
+          } else {
+            bringToFront(folder.name);
           }
 
           return prev.map((f) =>
@@ -148,28 +150,28 @@ export default function ProfileDesktop() {
       </div>
 
       <div className='window-container'>
-      <AnimatePresence>
-        {openFolders.map((folder) => {
-          const SelectedContent = folderContents[folder.name];
+        <AnimatePresence>
+          {openFolders.map((folder) => {
+            const SelectedContent = folderContents[folder.name];
 
-          return (
-            <Window 
-              key={folder.name}
-              id={folder.id}
-              title={folder.name}
-              onClose={() => {
-                closeFolder(folder.name);
-                sounds.playClick();
-              }}
-              defaultPosition={folder.defaultPosition}
-              defaultSize={folder.defaultSize}
-              localZIndex={folder.zIndex || 5}
-              bringToFront={() => bringToFront(folder.name)}
-            >
-              <SelectedContent />
-            </Window>
-          );
-        })}
+            return (
+              <Window 
+                key={folder.name}
+                id={folder.id}
+                title={folder.name}
+                onClose={() => {
+                  closeFolder(folder.name);
+                  sounds.playClick();
+                }}
+                defaultPosition={folder.defaultPosition}
+                defaultSize={folder.defaultSize}
+                localZIndex={folder.zIndex || 5}
+                bringToFront={() => bringToFront(folder.name)}
+              >
+                <SelectedContent />
+              </Window>
+            );
+          })}
         </AnimatePresence>
       </div>
     </div>

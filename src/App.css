@@ -248,7 +248,8 @@ button:active {
 }
 
 .profile-desktop,
-.projects-desktop {
+.projects-desktop,
+.playground-desktop {
   /* background: blue; */
   position: relative;
   display: flex;

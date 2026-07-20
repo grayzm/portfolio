@@ -28,6 +28,7 @@ export default function MusicPlayer() {
         handleShuffle,
         isShuffled,
         handleSeekChange,
+        selectTrack,
      } = useAudio();
 
     const containerRef = React.useRef(null);
@@ -81,9 +82,15 @@ export default function MusicPlayer() {
                             <div className='scroll-container flex-column'>
                                 {currentPlaylist.map((track) => (
                                     <div 
+                                        key={track.id}
                                         className={`playlist-title ${isSelected === track.title ? 'selected' : ''}`}
                                     >
-                                        <div className={`ticker-content ${isOverflowing ? 'animate' : ''}`}>
+                                        <div 
+                                            className={`ticker-content ${isOverflowing ? 'animate' : ''}`}
+                                            onClick={() => {
+                                                selectTrack(track.title);
+                                            }}
+                                        >
                                             <p ref={textRef}>{track.title}</p>
                                             {isOverflowing && (
                                                 <p>{track.title}</p>

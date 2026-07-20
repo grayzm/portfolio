@@ -5,6 +5,7 @@ import soonEnding from '../assets/music/soon-ending.mp3';
 import streetSwipe from '../assets/music/street-swipe.mp3';
 import birdBoxLobby from '../assets/music/birdbox-lobby.mp3';
 import birdBoxBattle from '../assets/music/birdbox-battle.mp3';
+import { select } from 'motion/react-client';
 
 const AudioContext = React.createContext();
 
@@ -36,18 +37,21 @@ export function AudioProvider({children}) {
             src: birdBoxBattle,
         },
     ]
-
-    // const shuffledPlaylist = shuffle(projectsPlaylist);
     
     const [currentPlaylist, setCurrentPlaylist] = React.useState(projectsPlaylist);
     const [currentIndex, setCurrentIndex] = React.useState(0);
     const currentTrack = currentPlaylist[currentIndex];
-    const [isSelected, setSelected] = React.useState(currentTrack.title);
+    const [isSelected, setIsSelected] = React.useState(currentTrack.title);
     const [isPlaying, setIsPlaying] = React.useState(false);
     const [progress, setProgress] = React.useState(0);
     const [duration, setDuation] = React.useState(0);
     const [isShuffled, setIsShuffled] = React.useState(false);
     const audioRef = React.useRef(new Audio());
+    const percentage = audioRef.current.duration > 0 ? (progress / audioRef.current.duration) * 100 : 0;
+
+    // React.useEffect(() => {
+    //     console.log(`currentTrack: ${currentTrack}`);
+    // }, [currentTrack]);
 
     const handlePrev = () => {
         if (progress <= 2) {
@@ -69,26 +73,17 @@ export function AudioProvider({children}) {
         setIsShuffled(!isShuffled);
     };
 
-    React.useEffect(() => {
-        if (isShuffled) {
-            const shuffledPlaylist = shuffle(projectsPlaylist);
-            setCurrentPlaylist(shuffledPlaylist);
-        } else {
-            setCurrentPlaylist(projectsPlaylist);
-        }
-    }, [isShuffled]);
-    
-     function shuffle(playlist) {
-        const shuffled = [...playlist];
+    const handleSeekChange = (e) => {
+        const newTime = Number(e.target.value);
+        audioRef.current.currentTime = newTime;
+        setProgress(newTime);
+    }
 
-        for (let i = shuffled.length - 1; i > 0; i--) {
-            const j = Math.floor(Math.random() * (i + 1));
-            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
-        };
+    const handleSelect = () => {
+        
+    }
 
-        return shuffled;
-    };
-
+    // PLAY AND PAUSE
     React.useEffect(() => {
         audioRef.current.src = currentTrack.src;
     }, [currentTrack.src]);
@@ -105,6 +100,7 @@ export function AudioProvider({children}) {
     }, [isPlaying, currentTrack.src]);
 
 
+    // SEEK BAR
     React.useEffect(() => {
         if (!audioRef.current) return;
 
@@ -137,13 +133,40 @@ export function AudioProvider({children}) {
         audioRef.current.currentTime = (percent / 100) * audioRef.current.duration;
     };
 
-    const handleSeekChange = (e) => {
-        const newTime = Number(e.target.value);
-        audioRef.current.currentTime = newTime;
-        setProgress(newTime);
-    }
+    // SHUFFLE 
+    React.useEffect(() => {
+        if (isShuffled) {
+            const shuffledPlaylist = shuffle(projectsPlaylist);
+            const playingTrack = currentTrack.title;
+            // console.log(`playingTrack: ${playingTrack}`);
 
-    const percentage = audioRef.current.duration > 0 ? (progress / audioRef.current.duration) * 100 : 0;
+            setCurrentPlaylist(shuffledPlaylist);
+            setCurrentIndex(shuffledPlaylist.findIndex(track => track.title === playingTrack));
+        } else {
+            setCurrentPlaylist(projectsPlaylist);
+        }
+    }, [isShuffled]);
+    
+    function shuffle(playlist) {
+        const shuffled = [...playlist];
+
+        for (let i = shuffled.length - 1; i > 0; i--) {
+            const j = Math.floor(Math.random() * (i + 1));
+            [shuffled[i], shuffled[j]] = [shuffled[j], shuffled[i]];
+        };
+
+        return shuffled;
+    };
+
+    function selectTrack(trackTitle) {
+        const trackIndex = currentPlaylist.findIndex(track => track.title === trackTitle);
+
+        setCurrentIndex(trackIndex);
+    };
+
+    React.useEffect(() => {
+        setIsSelected(currentTrack.title);
+    }, [currentTrack]);
 
     return (
         <AudioContext.Provider value={{ 
@@ -160,6 +183,7 @@ export function AudioProvider({children}) {
                 isShuffled,
                 handleShuffle,
                 handleSeekChange,
+                selectTrack,
             }}
         >
             {children}

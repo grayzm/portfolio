@@ -60,7 +60,7 @@ export default function TopPanel() {
         <div className="top-panel">
             <h2>Graicella Michelle S</h2>
             <div id="date-time">
-                <div className={`panel-btn-container ${activeWindow === 'music' ? 'active' : ''}`}
+                <div className={`panel-btn-container ${activeWindow.includes('music') ? 'active' : ''}`}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         setActiveWindow((prev) => 
@@ -77,7 +77,7 @@ export default function TopPanel() {
                 <h2>{time}</h2>
                 <div
                     id='settings'
-                    className={`panel-btn-container ${activeWindow === 'settings' ? 'active' : ''}`}
+                    className={`panel-btn-container ${activeWindow.includes('settings') ? 'active' : ''}`}
                     onMouseDown={(e) => {
                         e.stopPropagation();
                         setActiveWindow((prev) => 

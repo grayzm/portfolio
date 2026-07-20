@@ -11,6 +11,7 @@ import ProfileDesktop from './components/ProfileDesktop.jsx'
 import ProjectsDesktop from './components/ProjectsDesktop.jsx'
 import Locked from './components/Locked.jsx';
 import UnderConstruction from './components/UnderConstruction.jsx'
+import PlaygroundDesktop from './components/PlaygroundDesktop.jsx';
 
 function App() {
 
@@ -25,6 +26,7 @@ function App() {
   const desktopComponents = {
     about: <ProfileDesktop />,
     projects: <ProjectsDesktop />,
+    playground: <PlaygroundDesktop />,
     locked: <Locked />,
   }
   const [activeDesktop, setActiveDesktop] = React.useState('about');

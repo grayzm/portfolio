@@ -9,7 +9,7 @@ import ubookIcon from '../assets/icons/ubook.png';
 import streetSwipeIcon from '../assets/icons/street-swipe2.png';
 import birdboxIcon from '../assets/icons/birdbox.png';
 import rhysleepIcon from '../assets/icons/rhysleep.png';
-import { FileCode, LucideVolumeOff } from 'lucide-react';
+import { FileCode, LucideVolumeOff, FolderClosed } from 'lucide-react';
 
 import RandrumContents from '../components/project-components/Randrum.jsx';
 import SoonContents from '../components/project-components/Soon.jsx';
@@ -29,12 +29,11 @@ export default function ProjectsDesktop() {
         'street-swipe': StreetSwipeContents,
         birdbox: BirdboxContents,
         rhysleep: RhysleepContents,
-        // 'personal-website': PersonalWebsiteContents,
     };
 
     const folders = [
         { 
-            id: 1, 
+            id: 'randrum', 
             name: 'randrum', 
             type: 'app', 
             iconType: 'img', 
@@ -43,7 +42,7 @@ export default function ProjectsDesktop() {
             defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
-            id: 2, 
+            id: 'soon', 
             name: 'soon', 
             type: 'game', 
             iconType: 'img', 
@@ -52,7 +51,7 @@ export default function ProjectsDesktop() {
             defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
-            id: 3, 
+            id: 'ubook', 
             name: 'ubook', 
             type: 'app', 
             iconType: 'img', 
@@ -61,7 +60,7 @@ export default function ProjectsDesktop() {
             defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
-            id: 4, 
+            id: 'streetswipe', 
             name: 'street-swipe', 
             type: 'game', 
             iconType: 'img', 
@@ -70,7 +69,7 @@ export default function ProjectsDesktop() {
             defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
-            id: 5, 
+            id: 'birdbox', 
             name: 'birdbox', 
             type: 'game', 
             iconType: 'img', 
@@ -79,7 +78,7 @@ export default function ProjectsDesktop() {
             defaultSize: { width: '80vw', height: '80vh' },
         },
         { 
-            id: 6, 
+            id: 'rhysleep', 
             name: 'rhysleep', 
             type: 'app', 
             iconType: 'img', 
